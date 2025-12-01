@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="KlobiGB - Overview" />
+<meta name="author" content="Hannah Lenk" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Some of you might have read my rather grandiose and ever so slightly over-dramatic announcement of things to come. Among other writings I promised to share my insignificant little Game Boy emulator and today I shall finally make good on that promise. Or at least begin to do so. Or tell you about intending to begin doing so at some later date, maybe. We’ll see." />
+<meta property="og:description" content="Some of you might have read my rather grandiose and ever so slightly over-dramatic announcement of things to come. Among other writings I promised to share my insignificant little Game Boy emulator and today I shall finally make good on that promise. Or at least begin to do so. Or tell you about intending to begin doing so at some later date, maybe. We’ll see." />
+<link rel="canonical" href="http://localhost:4000/2020/06/22/klobigb_overview.html" />
+<meta property="og:url" content="http://localhost:4000/2020/06/22/klobigb_overview.html" />
+<meta property="og:site_name" content="code" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-22T04:41:39+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="KlobiGB - Overview" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hannah Lenk"},"dateModified":"2020-06-22T04:41:39+02:00","datePublished":"2020-06-22T04:41:39+02:00","description":"Some of you might have read my rather grandiose and ever so slightly over-dramatic announcement of things to come. Among other writings I promised to share my insignificant little Game Boy emulator and today I shall finally make good on that promise. Or at least begin to do so. Or tell you about intending to begin doing so at some later date, maybe. We’ll see.","headline":"KlobiGB - Overview","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/06/22/klobigb_overview.html"},"url":"http://localhost:4000/2020/06/22/klobigb_overview.html"}</script>
+<!-- End Jekyll SEO tag -->
+<title>code&lt;metas&gt; | KlobiGB - Overview</title>
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="icon" type="image/svg+xml" href="/assets/logo.svg"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="code&lt;metas&gt;" /></head>
+<body><header class="site-header" role="banner">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/"><span style="color:black"><img src=/assets/logo.svg>code</span><span style="color:white;">&ltmetas&gt</span></a><nav class="site-nav">
+				<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+				<label for="nav-trigger">
+					<span class="menu-icon">
+						<svg viewBox="0 0 18 15" width="18px" height="15px">
+							<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+						</svg>
+					</span>
+				</label>
+
+				<div class="trigger"><a class="page-link" href="/about.html">About</a><a class="page-link" href="/tag_directory.html">Tags</a><a target="_blank" class="page-link" href="https://courses.codemetas.de/course_info">Courses</a>
+				</div>
+			</nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+			<div class="left-side-decoration">
+				<img  src=/assets/logo.svg>
+			</div>
+			<div class="wrapper">
+				<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title p-name" itemprop="name headline">KlobiGB - Overview</h1>
+		<p class="post-meta">
+
+			<time class="dt-published" datetime="2020-06-22T04:41:39+02:00" itemprop="datePublished">Jun 22, 2020
+			</time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+					<span class="p-author h-card" itemprop="name">
+						Hannah Lenk
+					</span>
+				</span>• <span>
+					[
+						<a href="/tag_directory.html#c++">c++</a>
+						<a href="/tag_directory.html#klobigb">klobigb</a>
+						<a href="/tag_directory.html#gb">gb</a>
+						<a href="/tag_directory.html#emulation">emulation</a>
+					]
+				</span></p>
+	</header>
+
+	<div class="post-content e-content" itemprop="articleBody">
+		<p><em>Some of you might have read my rather grandiose and ever so slightly over-dramatic announcement of things to come. Among other writings I promised to share my insignificant little Game Boy emulator and today I shall finally make good on that promise. Or at least begin to do so. Or tell you about intending to begin doing so at some later date, maybe. We’ll see.</em></p>
+
+<p>What I definitely will do in this article, however, is explain why I deemed it an interesting side project to pursue and believe emulator development in general is awesome.
+Not only is the process fun and rewarding in and of itself and the product generally useful but the required study of intricate and obscure details deepens ones understanding and appreciation of hardware, abstraction and the conveniences of more common environments. Everyone should have written at least one emulator in their life.
+Furthermore I will give a brief overview of the device in question and break down which corresponding pieces the emulator consists of, details of all of which I shall elaborate on in future articles.
+Finally, in a short preview - not to leave you hanging without showing any code at all - I shall discuss how I represent the CPUs state, in particular its registers, and why I chose to do it the way I did.</p>
+
+<div class="post_toc">
+  <h4>Contents</h4>
+  <blockquote>
+<ul id="markdown-toc">
+  <li><a href="#emulation-and-why-emulate" id="markdown-toc-emulation-and-why-emulate">Emulation and why emulate?</a></li>
+  <li><a href="#the-game-boy-and-why-the-game-boy" id="markdown-toc-the-game-boy-and-why-the-game-boy">The Game Boy and why the Game Boy?</a></li>
+  <li><a href="#how" id="markdown-toc-how">How?</a></li>
+  <li><a href="#sharp-lr35902" id="markdown-toc-sharp-lr35902">Sharp LR35902</a></li>
+  <li><a href="#outlook" id="markdown-toc-outlook">Outlook</a></li>
+</ul>
+
+  </blockquote>
+</div>
+
+<h1 id="emulation-and-why-emulate">Emulation and why emulate?</h1>
+
+<p>To many of my dear readers<sup id="fnref:readers" role="doc-noteref"><a href="#fn:readers" class="footnote" rel="footnote">1</a></sup> the topic of emulation is most likely an intimately familiar one, at least from a users perspective. Nonetheless, just to ensure we are all one the same page here, allow me to clarify and explain ever so briefly what we mean when we use the term and why it is both useful for consumers and culturally significant.<sup id="fnref:skip" role="doc-noteref"><a href="#fn:skip" class="footnote" rel="footnote">2</a></sup></p>
+
+<p>There are many ways we could define what an emulator is, but essentially it all boils down to one computer system acting as if it were a different one. We know this is possible, as we know a great deal of computer science, thanks to <a href="https://en.wikipedia.org/wiki/Alan_Turing">the great Alan Turing</a> and <a href="https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis">work he and others did in the 1930s</a>. In particular he developed a seemingly simple model of computation now known as a <a href="https://en.wikipedia.org/wiki/Turing_machine">Turing Machine</a> that is nonetheless powerful enough to compute everything every modern and real machine can.<sup id="fnref:turing_machine" role="doc-noteref"><a href="#fn:turing_machine" class="footnote" rel="footnote">3</a></sup> All our real computational systems and most languages used to program them could be simulated on a Turing machine and can - to some extent - simulate a Turing machine. As such, they are <a href="https://en.wikipedia.org/wiki/Turing_completeness">essentially equivalent</a>, except for such minor and entirely insignificant inconveniences as speed and memory.<br />
+So <a href="https://en.wikipedia.org/wiki/Analytical_Engine">Babbage’s Analytical Engine</a> could in theory compute the beautiful transformation from markdown to html necessary for this post which my brand new Thinkpad T590 is constantly repeating live as I am typing. I just should have finished writing at the time of its inception, i.e. about 200 years ago, if I intend to publish anytime soon.</p>
+
+<p>More relevant than this grand exercise in futility and the area you, dear reader, are most likely to come in contact with such technology is in the realm of consumer electronics. If you played a game on <a href="https://en.wikipedia.org/wiki/Virtual_Console">Nintendo’s Virtual Console</a>, you ran an emulator. If you own any of the recent fad of mini-consoles, like the <a href="https://en.wikipedia.org/wiki/NES_Classic_Edition">NES Classic</a>, <a href="https://en.wikipedia.org/wiki/Sega_Genesis_Mini">Mega Drive Mini</a> or <a href="https://en.wikipedia.org/wiki/PlayStation_Classic">PlayStation Classic</a>, you ran an emulator.<sup id="fnref:bleem" role="doc-noteref"><a href="#fn:bleem" class="footnote" rel="footnote">4</a></sup> If you typed a command in a typical linux or mac terminal window, <a href="https://en.wikipedia.org/wiki/Terminal_emulator">you ran an emulator</a>.</p>
+
+<p>You may have noticed that this last example is not quite like the others. Not only are we not talking about a game console, it is quite likely you have not even seen the original hardware emulated. I know I personally have never seen a <a href="https://en.wikipedia.org/wiki/VT100">VT100</a>, for example<sup id="fnref:vt" role="doc-noteref"><a href="#fn:vt" class="footnote" rel="footnote">5</a></sup>, and nonetheless many of the programs I use daily issue <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">escape sequences originally supported by it</a> and expect them to be interpreted correctly.<sup id="fnref:linux_term" role="doc-noteref"><a href="#fn:linux_term" class="footnote" rel="footnote">6</a></sup><br />
+Which brings me closer to the point I am trying to make here. A multitude of reasons exist which go beyond the obvious circumvention of pesky copy protection and hardware vendor lock in and I would like to quickly address just one I consider among the most pressing: hardware dies.<br />
+I know, it’s something I am struggling to come to terms with, too.<sup id="fnref:hardware_death" role="doc-noteref"><a href="#fn:hardware_death" class="footnote" rel="footnote">7</a></sup> I’ll give you a moment to get over the initial shock before I drop the next bomb and tell you that some even stops being produced. And it just gets worse: Tragically, not all software is open source, code can get lost too. Simply adjusting, rewriting and recompiling is not usually an option for proprietary products. I think we can all agree that most software, especially video games, should be considered a work of art and is worth preserving just as much as paintings, movies, television shows and music are. Future generations should be enabled to enjoy an authentic experience of what it was like to consume these products of creative endeavor. <a href="https://en.wikipedia.org/wiki/Digital_preservation#Emulation">Emulating the devices they ran on</a> is the most sustainable way to do so.</p>
+
+<p>So as you can see, it is kind of essential for preserving our cultural inheritance that someone engages in emulator development. Yet why should that someone be me or even you, dear reader? Why can’t it be <em>someone else</em>?<br />
+Whilst asking that question is not, in general, a good idea and all of us are <a href="https://en.wikipedia.org/wiki/Diffusion_of_responsibility">all too prone to do so</a>, let’s engage with it for just another minute.<sup id="fnref:reading_speed" role="doc-noteref"><a href="#fn:reading_speed" class="footnote" rel="footnote">8</a></sup></p>
+
+<p>Naturally, random people on the internet, <a href="https://www.reddit.com/r/EmuDev/comments/gteo6h/is_learning_emudev_useful_in_general/">specifically on reddit</a>, have much better answers than I myself could provide alone. Specifically, they mentioned:</p>
+<ul>
+  <li>All programming is practice and improves ones ability to program</li>
+  <li>An emulator is a rather big project and as such teaches you about code management and systems design</li>
+  <li>The skill set acquired is especially helpful when dealing with embedded systems, as you have to deal with many low-level details rarely encountered in other types of projects</li>
+  <li>Even if direct exposure to those details is rare, the additional knowledge of internal workings of hardware can help make you a more careful and better programmer</li>
+</ul>
+
+<p>Those are great arguments, yet are they sufficient? I don’t know. As so frequently, I offered up a long, somewhat plausible and elaborate explanation and justification that at best tells only half the story. It seems far more like a rationalization I constructed after the fact than a candid reflection of my motivations at the start of this project. My thoughts at the time can simply be summarized as “This is fun!” and I belief that alone is enough.<br />
+<a href="https://en.wikipedia.org/wiki/Brian_Kernighan">Brian Kernighan</a><sup id="fnref:brian" role="doc-noteref"><a href="#fn:brian" class="footnote" rel="footnote">9</a></sup> once so eloquently suggested:</p>
+
+<blockquote>
+  <p>“Do what you think is interesting, do something that you think is fun and worthwhile, because otherwise you won’t do it well anyway.”</p>
+</blockquote>
+
+<p>I am trying to follow his advice.</p>
+
+<h1 id="the-game-boy-and-why-the-game-boy">The Game Boy and why the Game Boy?</h1>
+
+<p>If you have never heard of the Game Boy, I assume you must either be very very young - good for you then - or have been living under a rock for a few decades.<sup id="fnref:rock" role="doc-noteref"><a href="#fn:rock" class="footnote" rel="footnote">10</a></sup> It must have been a particularly remote and secluded rock so, considering this thing has been continuously produced for 14 years until 2003, is still among <a href="https://en.wikipedia.org/wiki/List_of_best-selling_game_consoles">the three most sold video game consoles of all time</a> even now and has been to wars and survived:<sup id="fnref:credit_gulfgb" role="doc-noteref"><a href="#fn:credit_gulfgb" class="footnote" rel="footnote">11</a></sup></p>
+
+<p><img src="/images/Game_boy_damaged_in_the_gulf_war.JPG" alt="A Game Boy damaged in the gulf war and still capable of playing Tetris" title="A Game Boy damaged in the gulf war and still capable of playing Tetris ;-)" class="centered-image" width="40%" /></p>
+
+<p>Many <a href="https://en.wikipedia.org/wiki/Kirby_(character)">iconic</a> <a href="https://en.wikipedia.org/wiki/Wario">characters</a> and incomparably successful <a href="https://en.wikipedia.org/wiki/Pok%C3%A9mon">franchises</a> still very much alive today, about three decades later, got their debut on this incredible little device.</p>
+
+<p>All of this undoubtedly makes the Game Boy historically significant and a really great device to own and use, yet does it also imply it’s a great choice to develop an emulator for?</p>
+
+<p>As with many interesting questions, there is no simple binary answer. Rather, it depends. More concretely, it depends on your goals. If you desire to produce an unrivaled product that delivers unique benefits to its users and will set you apart from the crowd, it might not be the best of choices. At the time of writing <a href="https://github.com/topics/gameboy-emulator">github lists 184 repositories under the topic gameboy-emulator</a>.<br />
+If you desire a really difficult, nigh-insurmountable challenge with little help along the way and are already quite well versed and experienced, it might not be the most ideal choice either. The internet offers a ton of <a href="https://github.com/Gekkio/gb-ctr">excellent</a> <a href="https://gbdev.io/pandocs/">documentation</a> about almost all relevant details gathered and published by wonderful people over the course of many years, the <a href="https://www.reddit.com/r/EmuDev/">emudev reddit</a> is filled with myriad questions and answers about details and frequent errors and a number of excellent <a href="https://github.com/retrio/gb-test-roms">test roms</a> are available.</p>
+
+<p>If conversely - like me - you are just starting out in this direction, the situation could hardly be more ideal. The Game Boy is a reasonably simple device whilst not being entirely trivial. It is easy enough to get <em>something</em> on the screen and even quickly get the satisfaction of some playable games. Nonetheless there are some almost inevitable pitfalls ensuring you learn something new on the way. If one gets bored and ambitious, the number of hours one can sink into getting the details exactly right, supporting more games and peripherals and improving performance is limited by life, not problems to solve. <sup id="fnref:chip8" role="doc-noteref"><a href="#fn:chip8" class="footnote" rel="footnote">12</a></sup></p>
+
+<p>And - of course - I have an unhealthy obsession with Tetris and the early Pokemon games. Developing an emulator proves a most convenient excuse to play them and consider it work ;-). It is simply immensely satisfying to see this displayed in a program of my own:</p>
+
+<p><img src="/images/klobigb_pokemon_title.gif" alt="Pokemon Menu Screen in KlobiGB" title="Isn't it lovely?" class="centered-image" width="40%" /></p>
+
+<h1 id="how">How?</h1>
+
+<p>With this grand prelude out of the way we finally know <em>what</em> it is we want to do and <em>why</em> we want to do it<sup id="fnref:assumption" role="doc-noteref"><a href="#fn:assumption" class="footnote" rel="footnote">13</a></sup>, so we can at long last get started on <em>how</em> to go about it.</p>
+
+<p>As I most likely have already bored you out of your mind with all my meaningless introductory babble, lets not dwell on abstract matters much longer and get down into the weeds and details of our concrete example. There is just one relevant fact you have to understand before we get started. Allow me to put it in the words of one of the greater tv shows of recent memory at a time when it was still good:<sup id="fnref:as_if" role="doc-noteref"><a href="#fn:as_if" class="footnote" rel="footnote">14</a></sup></p>
+
+<p><img src="/images/if_you_cant_tell.jpg" alt="If you can't tell, does it matter?" title="The &quot;as-if rule&quot; of real life" class="centered-image" width="50%" /></p>
+
+<p>What our emulator has to mimic is only the outwardly observable behavior of the original system, not its exact internal workings. So we can save ourselves the trouble of getting down to the level of individual logic gates, transistors or even the underlying physics. That is essentially the <a href="https://stackoverflow.com/questions/1584617/simulator-or-emulator-what-is-the-difference">difference between emulation and simulation</a>.<sup id="fnref:simulation" role="doc-noteref"><a href="#fn:simulation" class="footnote" rel="footnote">15</a></sup></p>
+
+<p>In order to determine which parts of the original hardware’s behavior we should deem relevant and observable, we ought to consider what it is our program eventually does: It takes as input a digital copy of any given real game and presents to the user an approximation of the visuals and sound this program would have shown and played were it executed on a real Game Boy. Button presses in some form are forwarded to the emulator and the program responds by changing what it presents in approximately the same way it would have had the physical buttons been pressed. As such we have to be somewhat accurate with everything that is shown directly to the user(humans don’t necessarily notice or care about every pixel and millisecond) and <em>really</em> accurate with everything that can be seen by a program, i.e. everything an arbitrary instruction in a program can use to change its behavior. If one instruction stores the value 42 and another reads the stored value, it does not matter how this happens, but it had better read 42, not 41 or 43.</p>
+
+<p>It might seem patently obvious, but this trivial observation can guide us when deciding what is relevant and what is not. 
+Take, for instance, the PPU(Picture Processing Unit), which is responsible for drawing graphics onto the screen. It is a really strange little beast and I will go into much more detail about it in a dedicated article. For now, suffice it to say that despite using an LCD, it acts as if the image was drawn by a CRT, that is gradually in <a href="https://en.wikipedia.org/wiki/Scan_line">scanlines</a>. Cycle accurately emulating this behavior can be quite expensive and it might be reasonable to ignore that detail and instead draw the whole screen at once at the same time the last scanline would have finished. This acceleration would, however, yield erroneous results. A program can set a specific register and thereby request an interrupt when the drawing reaches a specified line. It can then react to this and change parameters of the drawing mid-screen. Many if not most games <a href="https://kemenaran.winosx.com/posts/links-awakening-rendering-the-opening-cutscene/">utilize this to great effect</a>. As such, we have to at least do our drawing line by line.<br />
+On the other hand, doing it pixel by pixel is not strictly necessary. Whilst some nasty(or ingenious) games even modify settings during the drawing of a single line, there is - to my knowledge - no way for a program itself to detect its effect and the damage done by getting it wrong is rare and mostly limited to some minor visual artifacts, which is a trade-off I am willing to make.</p>
+
+<p>However, instead of getting ahead of and losing ourselves in the details of any one part, we should first of all get an overview of what parts there are and what their respective job is. I already mentioned the PPU above. Including it, there are a bunch of systems running in parallel:</p>
+
+<ul>
+  <li><em>CPU</em>: The “central processing unit”, or processor. This is what is responsible for executing instructions.</li>
+  <li><em>PPU</em>: The “picture processing unit”, basically the systems graphics card. This is responsible for drawing pictures on the screen, hence the name.</li>
+  <li><em>APU</em>: The “audio processing unit”. You might have guessed it from its name, but the beautiful music of our games is played with this piece of hardware.</li>
+  <li><em>DMA Controller</em>: DMA stands for “direct memory access”. This controller can be used by programs to quickly transfer some memory without involving the CPU in the copying process.</li>
+  <li><em>Timer</em>: A timer counting up a register that can be configured to interrupt the CPU.</li>
+</ul>
+
+<p>These pieces communicate via memory mapped registers. Aside from those, the 64 KB address space also contains ROM, RAM and potentially other things from the currently inserted cartridge, so we have to somehow emulate this memory mapping as well and route reads and writes to the correct subsystems.</p>
+
+<p>That much information should be sufficient to begin working. Better and more detailed writing as well as great videos can - of course - be found online. I wholeheartedly recommend watching <a href="https://media.ccc.de/v/33c3-8029-the_ultimate_game_boy_talk">The Ultimate Game Boy Talk</a>, it has been an invaluable resource for me.</p>
+
+<h1 id="sharp-lr35902">Sharp LR35902</h1>
+
+<p>The first and central piece we shall take a closer look at and attempt implementing is the CPU. In the talk I mentioned above, Michael Steil utilized this beautiful visualization on his <a href="https://www.pagetable.com/?p=1099">slides</a> to describe it:</p>
+
+<p><img src="/images/sharp_lr.png" alt="The Sharp LR35902 has instructions from both the Zilog Z80 and the Intel 8080(but not all of them) and some more" title="Why?" class="centered-image" width="50%" /></p>
+
+<p>As you can see, it is somewhat of a mix between the more well known and frequently used <a href="https://en.wikipedia.org/wiki/Zilog_Z80">Zilog Z80</a> and <a href="https://en.wikipedia.org/wiki/Intel_8080">Intel 8080</a> processors with some slices cut away and some additional sugar sprinkled on top. It is an 8-bit processor, but uses a 16-bit address bus which grants it access to a 64KB big linear address space. As one would expect, it also has some quickly accessible storage in the form of registers. It sports the same set as the 8080. Here is an <a href="https://github.com/gbdev/pandocs/blob/develop/content/CPU_Registers_and_Flags.md">excerpt of the pandocs</a>, describing them and their use:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 16bit Hi   Lo   Name/Function
+ AF    A    -    Accumulator &amp; Flags
+ BC    B    C    BC
+ DE    D    E    DE
+ HL    H    L    HL
+ SP    -    -    Stack Pointer
+ PC    -    -    Program Counter/Pointer
+</code></pre></div></div>
+
+<p>Let’s ignore the Stack Pointer, Program Counter and Flags for now and focus on the stuff in between, i.e. BC, DE and HL. Or should I rather say B, C, D, E, H, and L? Despite being mainly an 8-bit processor, the Sharp LR35902 supports some instructions working with 16 bit wide operands and for that purpose registers can be paired up and treated as one larger value. So B can be either a simple 8-bit value of itself or the <a href="https://en.wikipedia.org/wiki/Bit_numbering#Most_significant_byte">most significant byte</a> of the 16-bit register BC.</p>
+
+<p>How exactly should such a construct be represented in code. This is, of course, language dependent, which is why at least a fleeting familiarity with my language of choice, C++, may be required to fully comprehend what is discussed below.<sup id="fnref:language" role="doc-noteref"><a href="#fn:language" class="footnote" rel="footnote">16</a></sup></p>
+
+<p>As writes to a partial register have to modify the value of the combined one and vice-versa, we have to get slightly more sophisticated than separate variables of the appropriate bit width. Many, if not most, emulators chose to do something different for reasons I am going to outline in a moment, but with a cursory search, I found at least 7 that use something akin to the following:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">union</span> <span class="n">register16</span>
+<span class="p">{</span>
+	<span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">combined</span><span class="p">;</span>
+	<span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="p">};</span></code></pre>
+</figure>
+
+<p>This seems, at first glance, like the simplest and most obvious solution. After all, multiple variables of different type sharing the same region of memory is exactly what <a href="https://en.cppreference.com/w/cpp/language/union">unions</a> are made for, isn’t it? Well, not exactly. This approach has two very significant drawbacks:</p>
+
+<ol>
+  <li>It is <a href="https://en.cppreference.com/w/cpp/language/ub">undefined behavior</a>.</li>
+  <li>Even on compilers that specifically allow it, the exact behavior is machine dependent.</li>
+</ol>
+
+<p>To understand the first point, the description above has to be amended by a few meaningful words: Multiple variables of different type sharing the same region of memory, <strong>only one of which is active at any given time</strong>, is what unions are made for. Whilst the members of a <em>normal</em> <a href="https://en.cppreference.com/w/cpp/language/class">class type</a> share (almost) the same lifetime, but live in different, non-overlapping (but adjacent) memory, the members of a union share the same memory, but use it at different, non-overlapping times. Writing to any member is ok and simply switches which is active, <a href="https://stackoverflow.com/questions/11373203/accessing-inactive-union-member-and-undefined-behavior">reading from an inactive member, however, is undefined behavior.</a><sup id="fnref:variant" role="doc-noteref"><a href="#fn:variant" class="footnote" rel="footnote">17</a></sup></p>
+
+<p>We clearly cannot guarantee that whatever Game Boy code we execute happens to adhere to those rules. In fact, we can pretty much guarantee it does not, as building up the larger values by its parts is kind of how things were and frequently had to be handled on the device.</p>
+
+<p>But what does that mean? What even is “undefined behavior”? I keep throwing this phrase around without any clarification. Well, dear reader, undefined behavior is exactly what it says on the tin. There are things with behavior not defined by the <a href="https://www.youtube.com/watch?v=ZLNq-4IiNTY">holy</a> <a href="https://github.com/cplusplus/draft">standard</a>. Famous examples are dereferencing nullptr or accessing arrays out of bounds. The standard imposes no restrictions on what a compliant compiler is free to do if it encounters code committing such atrocities. It may set your computer on fire, <a href="https://feross.org/gcc-ownage/">launch nethack</a> or - worst of all - do exactly what you expected it to. Until one day it doesn’t. It is clearly something any C++ programmer should avoid at all costs.<sup id="fnref:ubsan" role="doc-noteref"><a href="#fn:ubsan" class="footnote" rel="footnote">18</a></sup></p>
+
+<p>“But wait”, I hear you say. “That is all fine and dandy for purists in a language lawyering class held in your cute little ivory tower, but out here, in <em>the real world</em>, we couldn’t care less about your theory. Compilers disagree. Look here, <a href="https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#Type%2Dpunning">gcc specifically allows accessing inactive members</a>, so why should I care?”</p>
+
+<p>Fine. Point taken. If you know about the issue, know your compiler and know what you are doing, you can get away with it. Go ahead. This still leaves problem number 2 so: The exact results are machine dependent.</p>
+
+<p>What do I mean by that? Quite simple: <a href="https://en.wikipedia.org/wiki/Endianness">Endianness</a>. Endianness is the ordering used to store multi-byte values in memory. Earlier, I described that B is the most significant byte in the 2-byte BC register. Whether this corresponds to parts[0] or parts[1] in the declaration above depends on the system we run on. On a big-endian system, which stores higher valued bytes at lower addresses, B is parts[0] and C is parts[1]. Little-endian systems, on the other hand, store lower value bytes at lower addresses and the parts would be reversed, B being parts[1] and C being parts[0].</p>
+
+<p>If you know about the issue, know your compiler and your target architecture and know what you are doing, you can still get away with it, but the picture starts to look a little bleak by now. It might be worth considering alternatives.</p>
+
+<p>What could be done instead? Specifics can vary and concrete solutions abound, but all of them basically fall into one of two categories: keep separate 8 bit values and combine them when needed or keep one 16 bit value and split it when needed. Specialize access to the whole or specialize access to the parts. My choice at the time was the latter, so in retrospect I have to admit it was rather arbitrary.<sup id="fnref:blanket" role="doc-noteref"><a href="#fn:blanket" class="footnote" rel="footnote">19</a></sup></p>
+
+<p>In a solution not entirely unlike the <a href="https://en.cppreference.com/w/cpp/container/vector_bool/reference">proxy type used by std::vector’s bool specialization</a> to reference individual bits and with all the same drawbacks making this so contentious, I decided to build a reference-like type to a single byte within a larger value:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">byte_proxy</span>
+<span class="p">{</span>
+	<span class="nl">public:</span>
+	<span class="k">constexpr</span> <span class="n">byte_proxy</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="o">&amp;</span> <span class="n">target</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">shift</span><span class="p">)</span> <span class="k">noexcept</span><span class="o">:</span>
+		<span class="n">target_</span><span class="p">{</span><span class="n">target</span><span class="p">},</span>
+		<span class="n">shift_</span><span class="p">{</span><span class="n">shift</span><span class="p">}</span>
+	<span class="p">{}</span>
+	
+	<span class="k">constexpr</span> <span class="k">operator</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span><span class="n">target_</span><span class="o">&gt;&gt;</span><span class="n">shift_</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="k">constexpr</span> <span class="n">byte_proxy</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">val</span><span class="p">)</span> <span class="k">noexcept</span>
+	<span class="p">{</span>
+		<span class="n">target_</span><span class="o">&amp;=~</span><span class="p">((</span><span class="mh">0xff</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">shift_</span><span class="p">);</span>
+		<span class="n">target_</span><span class="o">|=</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="p">{</span><span class="n">val</span><span class="p">}</span><span class="o">&lt;&lt;</span><span class="n">shift_</span><span class="p">);</span>
+		<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="k">private</span><span class="o">:</span>
+	<span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="o">&amp;</span> <span class="n">target_</span><span class="p">;</span>
+	<span class="kt">unsigned</span> <span class="n">shift_</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
+</figure>
+
+<p>This code is a bit simplified. The real one is a template to be more generic in its source and target type, contains some more casts to ensure we get the right types and values without any narrowing, integral promotions or sign extension getting in our way and overloads some more special members, like assignment from another byte_proxy and the compound assignments(i.e. +=, -= etc.). I deemed such details unimportant and distracting, so I decided on omitting them in service of accessibility.</p>
+
+<p>The basic idea is rather trivial:</p>
+<ul>
+  <li>It is constructed with a reference to a larger value and a starting position inside this value. A shift of 0 addresses the first, lowest valued byte, a shift of 8 addresses the next higher valued one and so on. Values in between would also be possible, but are not useful in our case.</li>
+  <li>It can be converted to a simple 8-bit value by shifting the relevant bits to the front and masking off the others.</li>
+  <li>If it is assigned to, it first sets the relevant bits to 0, thereby erasing whatever was stored before, shifts the replacement into position and uses bitwise or to insert it.</li>
+</ul>
+
+<p>Shifting bits in an unsigned value <a href="https://en.cppreference.com/w/cpp/language/operator_arithmetic">is clearly defined</a> to be equivalent to multiplying with 2 raised to the power of the shift amount (modulo 2<sup>number_of_result_bits</sup>). It is as such machine independent and guaranteed to give the same and desired result on any platform it is compiled for. All our problems are solved.</p>
+
+<p>Well… the most astute and well-read of my readers are likely to interrupt at this point and call me out for some minor hypocrisy. When presenting the union solution I held it to the highest standard and demanded compliance, but my own solution is not guaranteed to work either. The <a href="https://en.cppreference.com/w/cpp/header/cstdint">fixed-width integer types are optional</a>, an implementation may chose to simply not provide them at all. I still maintain that it is better. If it compiles we can be absolutely sure it works as advertised, if it cannot work, it will fail to compile. I’d take that over undefined or unspecified behavior any day.</p>
+
+<p>Alright, with that out of the way, how do I actually use this? Do I keep additional members in my state class for all the partial registers? I could do that, but it has some downsides:</p>
+<ul>
+  <li>It makes programmatically selecting a register at runtime a little annoying (basically using a big switch and there are really enough of those in an emulator xD)</li>
+  <li>It kind of wastes memory (a really, really insignificant amount in the grand scheme of things and if this were the only reason it would clearly be premature optimization without any benefit. But why pessimize unnecessarily?)</li>
+  <li>It makes copying or storing and restoring the state more difficult and error prone. This one is really problematic. As the state would contain references to part of itself, simply copying it normally does not work or might allow the copy to modify the original. Even worse, those references could be left dangling and - once again - throw us right back into undefined behavior land.</li>
+</ul>
+
+<p>As such, I store the 16-bit registers as an array and create the partial proxies on the fly whenever required. But wait, isn’t that ugly? Will I have to write registers_[0] to get at A and lose all the beautiful mnemonics? Not really, that is what <a href="https://en.cppreference.com/w/cpp/language/enum">enums</a> are for:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">enum</span> <span class="n">register16</span>
+<span class="p">{</span>
+	<span class="n">BC</span><span class="p">,</span> <span class="n">DE</span><span class="p">,</span> <span class="n">HL</span><span class="p">,</span> <span class="n">AF</span><span class="p">,</span> <span class="n">SP</span><span class="p">,</span> <span class="n">PC</span>
+<span class="p">};</span></code></pre>
+</figure>
+
+<p>Each enumerator can now be used to index into our array. state[registers16::AF] for instance would provide us with the 4th entry. But wait, isn’t that in itself ugly and dangerous? Doesn’t it pollute the global namespace and allow far more operations than we actually want? Of course, that is <a href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Renum-class">what strongly typed</a> <a href="https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum">enums are for</a>:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">enum</span> <span class="k">class</span> <span class="nc">register16</span>
+<span class="p">{</span>
+	<span class="n">BC</span><span class="p">,</span> <span class="n">DE</span><span class="p">,</span> <span class="n">HL</span><span class="p">,</span> <span class="n">AF</span><span class="p">,</span> <span class="n">SP</span><span class="p">,</span> <span class="n">PC</span>
+<span class="p">};</span></code></pre>
+</figure>
+
+<p>But wait, doesn’t that prevent our original use-case? Without the implicit conversion to int we can’t use the enumerators to index into an array now, can we? That is correct. Enter: the worlds simplest container that is not a plain array:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">enum_type</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">number_of_values</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">enum_map</span> 
+<span class="p">{</span>
+	<span class="nl">public:</span>
+	<span class="k">using</span> <span class="n">underlying</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">underlying_type_t</span><span class="o">&lt;</span><span class="n">enum_type</span><span class="o">&gt;</span><span class="p">;</span>
+	
+	<span class="k">constexpr</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="n">enum_type</span> <span class="n">v</span><span class="p">)</span> <span class="k">noexcept</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">underlying</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">)];</span>
+	<span class="p">}</span>
+	
+	<span class="k">constexpr</span> <span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="n">enum_type</span> <span class="n">v</span><span class="p">)</span> <span class="k">const</span> <span class="k">noexcept</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">underlying</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">)];</span>
+	<span class="p">}</span>
+	
+	<span class="k">constexpr</span> <span class="k">auto</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">number_of_values</span><span class="p">;</span> <span class="p">}</span>
+	
+	<span class="k">private</span><span class="o">:</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">number_of_values</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">{};</span>
+<span class="p">};</span></code></pre>
+</figure>
+
+<p>Again, the real code contains some more members to be a proper container, but it’s unimportant to get the idea. All it does is forward operations to an underlying <a href="https://en.cppreference.com/w/cpp/container/array">std::array</a>, explicitly casting away the enum where required. We are back to what we had with a plain array and plain unscoped enums, with some additional safety, as it can only be accessed by valid enum values. One could still work around this of course, yet trying to prevent it is no longer fighting against Murphy, but Machiavelli.<sup id="fnref:murphy" role="doc-noteref"><a href="#fn:murphy" class="footnote" rel="footnote">20</a></sup></p>
+
+<p>Great. Combining those parts nets us a working and at least somewhat elegant solution, but at what cost? It seems like quite a lot of machinery and abstraction just to get around issues likely never to appear on any system this emulator is ever going to be compiled for. Is it worth it? Is it expensive?</p>
+
+<p>I planned to present a small benchmark here to prove my point, but it turns out I can do one better than that. Have look at this simple test:<sup id="fnref:excerpt" role="doc-noteref"><a href="#fn:excerpt" class="footnote" rel="footnote">21</a></sup></p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="c1">//[...]</span>
+<span class="k">class</span> <span class="nc">simple_cpustate_enum_proxy</span>
+<span class="p">{</span>
+	<span class="nl">public:</span>
+	<span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="n">register16</span> <span class="n">id</span><span class="p">)</span> <span class="k">noexcept</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">registers_</span><span class="p">[</span><span class="n">id</span><span class="p">];</span>
+	<span class="p">}</span>
+
+	<span class="k">constexpr</span> <span class="n">byte_proxy</span> <span class="k">operator</span><span class="p">[](</span><span class="n">register8</span> <span class="n">id</span><span class="p">)</span> <span class="k">noexcept</span>
+	<span class="p">{</span>
+		<span class="k">const</span> <span class="k">auto</span> <span class="n">idx</span><span class="o">=</span><span class="k">static_cast</span><span class="o">&lt;::</span><span class="n">std</span><span class="o">::</span><span class="n">underlying_type_t</span><span class="o">&lt;</span><span class="n">register8</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+		<span class="k">return</span> <span class="p">{</span><span class="n">registers_</span><span class="p">[</span><span class="n">register16</span><span class="p">{</span><span class="n">idx</span><span class="o">/</span><span class="mi">2</span><span class="p">}],(</span><span class="n">idx</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">8u</span><span class="p">};</span>
+	<span class="p">}</span>
+	
+	<span class="k">private</span><span class="o">:</span>
+	<span class="n">enum_map_with_num</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="p">,</span> <span class="n">register16</span><span class="o">&gt;</span> <span class="n">registers_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">union</span> <span class="n">register_union</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">combined</span><span class="p">;</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">simple_cpustate_union</span>
+<span class="p">{</span>
+    <span class="n">register_union</span> <span class="n">BC</span><span class="p">,</span> <span class="n">DE</span><span class="p">,</span> <span class="n">HL</span><span class="p">,</span> <span class="n">AF</span><span class="p">,</span> <span class="n">SP</span><span class="p">,</span> <span class="n">PC</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">simple_cpustate_enum_proxy</span> <span class="nf">magic_enum</span><span class="p">();</span>
+<span class="n">simple_cpustate_union</span> <span class="nf">magic_union</span><span class="p">();</span>
+
+<span class="kt">int</span> <span class="nf">test_enum</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">state</span><span class="o">=</span><span class="n">magic_enum</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">state</span><span class="p">[</span><span class="n">register8</span><span class="o">::</span><span class="n">A</span><span class="p">]</span><span class="o">+</span><span class="n">state</span><span class="p">[</span><span class="n">register16</span><span class="o">::</span><span class="n">SP</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">test_union</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">state</span><span class="o">=</span><span class="n">magic_union</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">state</span><span class="p">.</span><span class="n">AF</span><span class="p">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">state</span><span class="p">.</span><span class="n">SP</span><span class="p">.</span><span class="n">combined</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//[...]</span></code></pre>
+</figure>
+
+<p>
+<div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid black">
+<a href="/code/enum_proxy_vs_union.cpp">A simple comparison</a> <a href="https://godbolt.org/clientstate/CnsKICAic2Vzc2lvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6IDEsCiAgICAg ICJsYW5ndWFnZSI6ICJjKysiLAogICAgICAic291cmNlIjogIiNpbmNsdWRl IDxhcnJheT5cbiNpbmNsdWRlIDx0eXBlX3RyYWl0cz5cblxuI2luY2x1ZGUg PGNzdGRkZWY+XG4jaW5jbHVkZSA8Y3N0ZGludD5cblxuY2xhc3MgYnl0ZV9w cm94eVxue1xuXHRwdWJsaWM6XG5cdGNvbnN0ZXhwciBieXRlX3Byb3h5KHN0 ZDo6dWludDE2X3QmIHRhcmdldCwgdW5zaWduZWQgc2hpZnQpIG5vZXhjZXB0 OlxuXHRcdHRhcmdldF97dGFyZ2V0fSxcblx0XHRzaGlmdF97c2hpZnR9XG5c dHt9XG5cdFxuXHRjb25zdGV4cHIgb3BlcmF0b3Igc3RkOjp1aW50OF90KCkg Y29uc3Qgbm9leGNlcHQgeyByZXR1cm4gKHRhcmdldF8+PnNoaWZ0XykmMHhm ZjsgfVxuXHRcblx0Y29uc3RleHByIGJ5dGVfcHJveHkmIG9wZXJhdG9yPShz dGQ6OnVpbnQ4X3QgdmFsKSBub2V4Y2VwdFxuXHR7XG5cdFx0dGFyZ2V0XyY9 figoMHhmZik8PHNoaWZ0Xyk7XG5cdFx0dGFyZ2V0X3w9KHN0ZDo6dWludDE2 X3R7dmFsfTw8c2hpZnRfKTtcblx0XHRyZXR1cm4gKnRoaXM7XG5cdH1cblx0 XG5cdHByaXZhdGU6XG5cdHN0ZDo6dWludDE2X3QmIHRhcmdldF87XG5cdHVu c2lnbmVkIHNoaWZ0Xztcbn07XG5cbnRlbXBsYXRlIDx0eXBlbmFtZSBULCB0 eXBlbmFtZSBlbnVtX3R5cGUsIDo6c3RkOjpzaXplX3QgbnVtYmVyX29mX3Zh bHVlcz5cbmNsYXNzIGVudW1fbWFwIFxue1xuICAgIHB1YmxpYzpcblx0dXNp bmcgdW5kZXJseWluZz1zdGQ6OnVuZGVybHlpbmdfdHlwZV90PGVudW1fdHlw ZT47XG5cdFxuXHRjb25zdGV4cHIgYXV0byYgb3BlcmF0b3JbXShlbnVtX3R5 cGUgdikgbm9leGNlcHRcblx0e1xuXHRcdHJldHVybiBkYXRhW3N0YXRpY19j YXN0PHVuZGVybHlpbmc+KHYpXTtcblx0fVxuXHRcblx0Y29uc3RleHByIGNv bnN0IGF1dG8mIG9wZXJhdG9yW10oZW51bV90eXBlIHYpIGNvbnN0IG5vZXhj ZXB0XG5cdHtcblx0XHRyZXR1cm4gZGF0YVtzdGF0aWNfY2FzdDx1bmRlcmx5 aW5nPih2KV07XG5cdH1cblx0XG5cdGNvbnN0ZXhwciBhdXRvIHNpemUoKSBj b25zdCB7IHJldHVybiBudW1iZXJfb2ZfdmFsdWVzOyB9XG5cdFxuICAgIHBy aXZhdGU6XG5cdHN0ZDo6YXJyYXk8VCxudW1iZXJfb2ZfdmFsdWVzPiBkYXRh e307XG59O1xuXG50ZW1wbGF0ZSA8dHlwZW5hbWUgVCwgdHlwZW5hbWUgZW51 bV90eXBlPlxudXNpbmcgZW51bV9tYXBfd2l0aF9udW09ZW51bV9tYXA8VCxl bnVtX3R5cGUsc3RhdGljX2Nhc3Q8c3RkOjp1bmRlcmx5aW5nX3R5cGVfdDxl bnVtX3R5cGU+PihlbnVtX3R5cGU6Om51bSk+O1xuXG5lbnVtIGNsYXNzIHJl Z2lzdGVyOFxue1xuXHRDLEIsRSxELEwsSCxGLEEsIG51bVxufTtcblx0XG5l bnVtIGNsYXNzIHJlZ2lzdGVyMTZcbntcblx0QkMsIERFLCBITCwgQUYsIFNQ LCBQQywgbnVtXG59O1xuXG5jbGFzcyBzaW1wbGVfY3B1c3RhdGVfZW51bV9w cm94eVxue1xuXHRwdWJsaWM6XG5cdGNvbnN0ZXhwciBzdGQ6OnVpbnQxNl90 JiBvcGVyYXRvcltdKHJlZ2lzdGVyMTYgaWQpIG5vZXhjZXB0XG5cdHtcblx0 XHRyZXR1cm4gcmVnaXN0ZXJzX1tpZF07XG5cdH1cblxuXHRjb25zdGV4cHIg Ynl0ZV9wcm94eSBvcGVyYXRvcltdKHJlZ2lzdGVyOCBpZCkgbm9leGNlcHRc blx0e1xuXHRcdGNvbnN0IGF1dG8gaWR4PXN0YXRpY19jYXN0PDo6c3RkOjp1 bmRlcmx5aW5nX3R5cGVfdDxyZWdpc3Rlcjg+PihpZCk7XG5cdFx0cmV0dXJu IHtyZWdpc3RlcnNfW3JlZ2lzdGVyMTZ7aWR4LzJ9XSwoaWR4JTIpKjh1fTtc blx0fVxuXHRcblx0cHJpdmF0ZTpcblx0ZW51bV9tYXBfd2l0aF9udW08c3Rk Ojp1aW50MTZfdCwgcmVnaXN0ZXIxNj4gcmVnaXN0ZXJzXztcbn07XG5cbnVu aW9uIHJlZ2lzdGVyX3VuaW9uXG57XG4gICAgc3RkOjp1aW50MTZfdCBjb21i aW5lZDsgc3RkOjp1aW50OF90IHBhcnRzWzJdO1xufTtcblxuc3RydWN0IHNp bXBsZV9jcHVzdGF0ZV91bmlvblxue1xuICAgIHJlZ2lzdGVyX3VuaW9uIEJD LCBERSwgSEwsIEFGLCBTUCwgUEM7XG59O1xuXG5zaW1wbGVfY3B1c3RhdGVf ZW51bV9wcm94eSBtYWdpY19lbnVtKCk7XG5zaW1wbGVfY3B1c3RhdGVfdW5p b24gbWFnaWNfdW5pb24oKTtcblxuaW50IHRlc3RfZW51bSgpXG57XG4gICAg YXV0byBzdGF0ZT1tYWdpY19lbnVtKCk7XG4gICAgcmV0dXJuIHN0YXRlW3Jl Z2lzdGVyODo6QV0rc3RhdGVbcmVnaXN0ZXIxNjo6U1BdO1xufVxuXG5pbnQg dGVzdF91bmlvbigpXG57XG4gICAgYXV0byBzdGF0ZT1tYWdpY191bmlvbigp O1xuICAgIHJldHVybiBzdGF0ZS5BRi5wYXJ0c1sxXStzdGF0ZS5TUC5jb21i aW5lZDtcbn1cblxuaW50IHRlc3RfZW51bTIoKVxue1xuICAgIGF1dG8gc3Rh dGU9bWFnaWNfZW51bSgpO1xuICAgIHJldHVybiBzdGF0ZVtyZWdpc3Rlcjg6 OkZdK3N0YXRlW3JlZ2lzdGVyMTY6OlNQXTtcbn1cblxuaW50IHRlc3RfdW5p b24yKClcbntcbiAgICBhdXRvIHN0YXRlPW1hZ2ljX3VuaW9uKCk7XG4gICAg cmV0dXJuIHN0YXRlLkFGLnBhcnRzWzBdK3N0YXRlLlNQLmNvbWJpbmVkO1xu fVxuXG5zaW1wbGVfY3B1c3RhdGVfZW51bV9wcm94eSYgbWFnaWNfZW51bV9y ZWYoKTtcbnNpbXBsZV9jcHVzdGF0ZV91bmlvbiYgbWFnaWNfdW5pb25fcmVm KCk7XG5cbnZvaWQgdGVzdF9lbnVtMyhpbnQgdilcbntcbiAgICBhdXRvJiBz dGF0ZT1tYWdpY19lbnVtX3JlZigpO1xuICAgIHN0YXRlW3JlZ2lzdGVyODo6 Rl09djtcbn1cblxudm9pZCB0ZXN0X3VuaW9uMyhpbnQgdilcbntcbiAgICBh dXRvJiBzdGF0ZT1tYWdpY191bmlvbl9yZWYoKTtcbiAgICBzdGF0ZS5BRi5w YXJ0c1swXT12O1xufVxuXG52b2lkIHRlc3RfZW51bTQoaW50IHYpXG57XG4g ICAgYXV0byYgc3RhdGU9bWFnaWNfZW51bV9yZWYoKTtcbiAgICBzdGF0ZVty ZWdpc3Rlcjg6OkFdPXY7XG59XG5cbnZvaWQgdGVzdF91bmlvbjQoaW50IHYp XG57XG4gICAgYXV0byYgc3RhdGU9bWFnaWNfdW5pb25fcmVmKCk7XG4gICAg c3RhdGUuQUYucGFydHNbMV09djtcbn1cbiIsCiAgICAgICJjb21waWxlcnMi OiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNsYW5nX3RydW5rIiwK ICAgICAgICAgICJvcHRpb25zIjogIi1PMiAtc3RkPWMrKzE3IgogICAgICAg IH0KICAgICAgXSwKICAgICAgImV4ZWN1dG9ycyI6IFtdCiAgICB9CiAgXQp9 Cg== "><img class="svg-logo-link" src="/assets/compiler_explorer_logo.svg" /></a>
+</div>
+</p>
+
+<p>In it I compare and contrast two simplified versions of the cpu state. One - <em>simple_cpustate_enum_proxy</em> - using the constructs described above and another one - <em>simple_cpustate_union</em> - using a simple union. I introduce, without defining, two functions to conjure up instances of those types. This is done to prevent the compiler from optimizing everything away. As it cannot “see through” those calls it has to actually generate code to extract the values we are interested in. If you have a look at the compiler explorer link, you will however discover it manages to see through everything else I have done. The assembly generated for both cases is completely identical. <a href="https://www.youtube.com/watch?v=bSkpMdDe4g4">Compilers really are amazing!</a></p>
+
+<p>Yes, <a href="https://www.youtube.com/watch?v=rHIkrotSwcc">there are no zero cost abstractions</a>, but the cost here is purely on the developer side and its a cost payed for a clear benefit of well defined and clear code. The issues one had to think about when constructing it were issues that ought to be thought about anyway and the resulting constructs are more generally useful. I consider this a net win.</p>
+
+<h1 id="outlook">Outlook</h1>
+
+<p>Let’s recap: I’ve argued that emulation is important, developing an emulator is fun and educational and the Game Boy is a great device to get started. I briefly explained why and how emulation works and elaborated on a small, but important, implementation detail. I believe this is enough for one article. In my next post on the topic, I shall dive deeper into the exact workings of the CPU, how to implement the various supported instructions and how to efficiently integrate all of that into a larger, exchangeable and as such easily testable system. It will be more technical and I promise to cut down on the long introductions.<br />
+Thank you very much for reading. I am eagerly awaiting your constructive feedback, destructive feedback, insults and threats of violence.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:readers" role="doc-endnote">
+      <p>whom am I kidding here? It’s not like I have “many readers” yet xD <a href="#fnref:readers" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:skip" role="doc-endnote">
+      <p>Feel free to skip this section or any of the following if all the generic talk and ruminations about motivations are not to your liking. Until I get started with <a href="#how">“How?”</a> none of the sections really depend on previous ones. <a href="#fnref:skip" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:turing_machine" role="doc-endnote">
+      <p>In some respects it is even more powerful, as it is defined to have an infinitely long tape(i.e. infinite memory). Modern machines using finite memory can only be in a limited amount of states and could as such even be modeled as a “simple” <a href="https://en.wikipedia.org/wiki/Finite-state_machine">Finite State Machine</a> <a href="#fnref:turing_machine" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:bleem" role="doc-endnote">
+      <p>In Sonys case it is simply <a href="https://en.wikipedia.org/wiki/PCSX-Reloaded">a well known open source emulator</a>, which is kind of interesting, given their <a href="https://en.wikipedia.org/wiki/Bleem!">controversial history with third-party emulator development</a>. <a href="#fnref:bleem" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:vt" role="doc-endnote">
+      <p>it was before my time, but I would love to own one. <a href="#fnref:vt" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:linux_term" role="doc-endnote">
+      <p>It is also fascinating to note that Linux was originally created because Linus Torvalds was unhappy with what Minix provided and decided to write a terminal emulator to connect to his universities computer. I’d recommend a reading of <a href="https://www.goodreads.com/book/show/160171.Just_for_Fun">his autobiography</a>, it is quite interesting. <a href="#fnref:linux_term" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:hardware_death" role="doc-endnote">
+      <p>I have some unnatural and unhealthy attachment to all my devices, even to the point of naming them. Whenever any of them breaks down beyond repair I run through the usual stages of grief but somehow - just as in real life - I never quite manage to get to the acceptance part. <a href="#fnref:hardware_death" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:reading_speed" role="doc-endnote">
+      <p>Assuming I judge your reading speed correctly. If not, I apologize. <a href="#fnref:reading_speed" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:brian" role="doc-endnote">
+      <p>of awk and C and unix and… fame. Really, if you don’t know who he is read up on him and all the phenomenal work he produced. Computer science and computing would not be the same without him. <a href="#fnref:brian" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:rock" role="doc-endnote">
+      <p>I really don’t mean to be offensive here. I have no problem with living under a rock. Live wherever you feel comfortable. I can quite understand a desire to get away from humanities mad inhuman noise. <a href="#fnref:rock" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:credit_gulfgb" role="doc-endnote">
+      <p>Image taken with gratitude from <a href="https://commons.wikimedia.org/wiki/File:Game_boy_damaged_in_the_gulf_war.JPG">here</a> <a href="#fnref:credit_gulfgb" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:chip8" role="doc-endnote">
+      <p>Why not start with something even more simple then. Why not choose the ubiquitously mentioned <a href="https://en.wikipedia.org/wiki/CHIP-8">Chip8</a> for instance? Well, the truth is, I did. A few years ago on a particularly uneventful weekend that was my first emulator. If you feel overwhelmed by complexity I suggest taking a look at it. With its 35 opcodes and very simple display it can really help getting started and developing a general feel for how to structure an emulator. <a href="#fnref:chip8" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:assumption" role="doc-endnote">
+      <p>Technically, that phrasing is wrong of course, as “we” don’t “want to do” anything really and I describe what it is I already did. Nonetheless, to simply my writing and make it more directly relevant to you, I shall, from this point on, simply assume you wish to do something similar to what I did. <a href="#fnref:assumption" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:as_if" role="doc-endnote">
+      <p>That is very similar to a rule in the C++ Standard. The <a href="https://en.cppreference.com/w/cpp/language/as_if">as-if rule</a> is essentially what allows the compiler to optimize the horrendous code we present it with. It is allowed to transform what we have written in absolutely any way, provided we cannot observe it and the perceived result is the same, except for performance. In the case of emulators, of course, performance is correctness and can be observed. <a href="#fnref:as_if" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:simulation" role="doc-endnote">
+      <p>A short time ago, Matt Godbolt(of <a href="https://godbolt.org/">Compiler Explorer</a> fame) and Jason Turner(best known for <a href="https://www.youtube.com/playlist?list=PLs3KjaCtOwSZ2tbuV1hx8Xz-rFZTan2J1">C++ Weekly</a> and <a href="https://cppcast.com/">CppCast</a>), both of which are far more knowledgeable and much better versed in all this than I could hope to be, did <a href="https://www.youtube.com/watch?v=DbSRetQP-Xg">an interesting livestream</a> where they discussed this(among a lot of other things). They also showcased <a href="http://www.visual6502.org/">this awesome project.</a> <a href="#fnref:simulation" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:language" role="doc-endnote">
+      <p>Those who know me and those who skimmed over the tags assigned to this post might have guessed already ;-) <a href="#fnref:language" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:variant" role="doc-endnote">
+      <p>This source of hard to predict errors is the reason unions are usually paired with a tag/discriminator to remember which part is currently active. Even that is still quite error prone as it relies on programmer discipline to check the tag and act accordingly, which is why safer alternatives, like <a href="https://en.cppreference.com/w/cpp/utility/variant">std::variant</a>, exist. <a href="#fnref:variant" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ubsan" role="doc-endnote">
+      <p>There are <a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html">great tools</a> out there to help you catch such code before the damage is done. <a href="#fnref:ubsan" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:blanket" role="doc-endnote">
+      <p>It should not make too much of a difference, but blanket statements like that without any evidence are rarely a good idea. It would have been better to do some measurements or at least count which kind of access is more frequent. <a href="#fnref:blanket" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:murphy" role="doc-endnote">
+      <p>This is a <a href="https://comp.lang.cpp.moderated.narkive.com/nWMq40v6/murphy-vs-machiavelli-who-coined-it">common expression</a> used to describe that C++ does not try to fight intentional, malicious attempts to subvert its rules, only accidental ones. <a href="#fnref:murphy" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:excerpt" role="doc-endnote">
+      <p>The part displayed here is only an excerpt, you can click on the description to download the complete file or on the compiler explorer link to view it on there. <a href="#fnref:excerpt" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+	</div>
+
+
+<script>talkyardServerUrl='https://comments-for-codemetas-de.talkyard.net';</script>
+<script async defer src="https://c1.ty-cdn.net/-/talkyard-comments.min.js"></script>
+
+<div class="talkyard-comments" data-discussion-id="KlobiGB - Overview" style="margin-top: 45px;">
+<noscript>Please enable Javascript to view comments.</noscript>
+<p style="margin-top: 25px; opacity: 0.9; font-size: 96%">Comments powered by<a href="https://www.talkyard.io">Talkyard</a>.</p>
+</div>
+
+
+
+<a class="u-url" href="/2020/06/22/klobigb_overview.html" hidden></a>
+</article>
+
+			</div>
+		</main><footer class="site-footer h-card">
+	<data class="u-url" href="/"></data>
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+			<div class="footer-col footer-col-1"><ul class="social-contact-list"><li>
+			<a class="social-link" href="mailto:hannah.lenk@codemetas.de"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#email"></use></svg> <span>E-Mail</span></a>
+		</li><li>
+			<a class="social-link" href="https://www.linkedin.com/in/hannah-lenk-b9941613b"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span>LinkedIn</span></a>
+		</li><li>
+			<a class="social-link" href="https://www.twitch.tv/hannahlenk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitch"></use></svg> <span>Twitch</span></a>
+		</li></ul>
+</div>
+
+			<div class="footer-col footer-col-2"><ul class="social-showcase-list"><li>
+		<a class="social-link" href="https://github.com/hannahlenk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span>Github</span></a>
+	</li>
+	<li>
+		<a class="social-link" href="https://stackoverflow.com/users/1760583"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#stackoverflow"></use></svg> <span>stackoverflow</span></a>
+	</li>
+<li>
+		<a class="social-link" href="https://youtube.com/channel/UCeeufsDAkY633Ap4zyNHZVA"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#youtube"></use></svg> <span>YouTube</span></a>
+	</li></ul>
+</div>
+
+		</div>
+
+	</div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="The Royal Game" />
+<meta name="author" content="Hannah Lenk" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Welcome back - or so I hope - for yet another exciting installment of the grand, illustrious and ultimately pointless epic of “What have I wasted my freetime on in recent years”. This time around, I shall tell you about the royal game, i.e. chess, or rather of my humble attempts at contributing to its rich ecosystem of non-human players." />
+<meta property="og:description" content="Welcome back - or so I hope - for yet another exciting installment of the grand, illustrious and ultimately pointless epic of “What have I wasted my freetime on in recent years”. This time around, I shall tell you about the royal game, i.e. chess, or rather of my humble attempts at contributing to its rich ecosystem of non-human players." />
+<link rel="canonical" href="http://localhost:4000/2020/11/22/The-Royal-Game.html" />
+<meta property="og:url" content="http://localhost:4000/2020/11/22/The-Royal-Game.html" />
+<meta property="og:site_name" content="code" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-22T22:03:15+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The Royal Game" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hannah Lenk"},"dateModified":"2020-11-22T22:03:15+01:00","datePublished":"2020-11-22T22:03:15+01:00","description":"Welcome back - or so I hope - for yet another exciting installment of the grand, illustrious and ultimately pointless epic of “What have I wasted my freetime on in recent years”. This time around, I shall tell you about the royal game, i.e. chess, or rather of my humble attempts at contributing to its rich ecosystem of non-human players.","headline":"The Royal Game","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/11/22/The-Royal-Game.html"},"url":"http://localhost:4000/2020/11/22/The-Royal-Game.html"}</script>
+<!-- End Jekyll SEO tag -->
+<title>code&lt;metas&gt; | The Royal Game</title>
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="icon" type="image/svg+xml" href="/assets/logo.svg"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="code&lt;metas&gt;" /></head>
+<body><header class="site-header" role="banner">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/"><span style="color:black"><img src=/assets/logo.svg>code</span><span style="color:white;">&ltmetas&gt</span></a><nav class="site-nav">
+				<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+				<label for="nav-trigger">
+					<span class="menu-icon">
+						<svg viewBox="0 0 18 15" width="18px" height="15px">
+							<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+						</svg>
+					</span>
+				</label>
+
+				<div class="trigger"><a class="page-link" href="/about.html">About</a><a class="page-link" href="/tag_directory.html">Tags</a><a target="_blank" class="page-link" href="https://courses.codemetas.de/course_info">Courses</a>
+				</div>
+			</nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+			<div class="left-side-decoration">
+				<img  src=/assets/logo.svg>
+			</div>
+			<div class="wrapper">
+				<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title p-name" itemprop="name headline">The Royal Game</h1>
+		<p class="post-meta">
+
+			<time class="dt-published" datetime="2020-11-22T22:03:15+01:00" itemprop="datePublished">Nov 22, 2020
+			</time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+					<span class="p-author h-card" itemprop="name">
+						Hannah Lenk
+					</span>
+				</span>• <span>
+					[
+						<a href="/tag_directory.html#c++">c++</a>
+						<a href="/tag_directory.html#chess">chess</a>
+						<a href="/tag_directory.html#paulchen332">paulchen332</a>
+					]
+				</span></p>
+	</header>
+
+	<div class="post-content e-content" itemprop="articleBody">
+		<p><em>Welcome back - or so I hope - for yet another exciting installment of the grand, illustrious and ultimately pointless epic of “What have I wasted my freetime on in recent years”. This time around, I shall tell you about the royal game, i.e. chess, or rather of my humble attempts at contributing to its rich ecosystem of non-human players.</em></p>
+
+<p>I will begin by explaining what I am talking about, briefly<sup id="fnref:briefly" role="doc-noteref"><a href="#fn:briefly" class="footnote" rel="footnote">1</a></sup> recap the fascinating history of computer chess and in the course of that highlight the importance of game playing for showcasing, popularizing and driving machine intelligence research as well as its public perception. I shall further elaborate on my personal connection and love for the game and detail why - even in the face of a recent uptake of machine learning based techniques far more successful than my puny attempts could ever hope to be - an old-school, classical approach can still be a valuable investment of time and energy.<br />
+Afterwards, once my poor readers have slogged through this somewhat unnecessary prelude<sup id="fnref:skip" role="doc-noteref"><a href="#fn:skip" class="footnote" rel="footnote">2</a></sup>, I will get just a little more technical and provide a high level explanation of the general structure underlying many chess playing programs, culminating in a walkthrough of code implementing the UCI protocol used to communicate with GUIs and other programs pitting different human and non-human connoisseurs of the game against one another.<br />
+As a loyal and faithful reader you will, of course, have realized that this is quite similar in nature to <a href="/2020/06/22/klobigb_overview.html">my initial game boy emulation article</a>, in that most of this post is focused on motivations, history and providing an overview, with only a very brief fragment of code at the end. Unlike that time, however, I do not restrict myself to publishing only selected snippets within an article but have already released the <a href="https://github.com/philipplenk/paulchen332">complete code for a working engine</a> into the wild. 
+All of this sounds like kind of a huge undertaking, so before I lose your valuable attention, let’s dive right in.</p>
+
+<div class="post_toc">
+  <h4>Contents</h4>
+  <blockquote>
+<ul id="markdown-toc">
+  <li><a href="#what-is-an-engine-anyway---a-brief-history" id="markdown-toc-what-is-an-engine-anyway---a-brief-history">What is an <em>engine</em> anyway? - A brief history</a>    <ul>
+      <li><a href="#imagination" id="markdown-toc-imagination">Imagination</a></li>
+      <li><a href="#reality" id="markdown-toc-reality">Reality</a></li>
+      <li><a href="#dominance" id="markdown-toc-dominance">Dominance</a></li>
+    </ul>
+  </li>
+  <li><a href="#why" id="markdown-toc-why">Why?</a></li>
+  <li><a href="#introducing-" id="markdown-toc-introducing-">Introducing …</a></li>
+  <li><a href="#how" id="markdown-toc-how">How?</a>    <ul>
+      <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+      <li><a href="#uci" id="markdown-toc-uci">UCI</a></li>
+    </ul>
+  </li>
+  <li><a href="#outlook" id="markdown-toc-outlook">Outlook</a></li>
+</ul>
+
+  </blockquote>
+</div>
+
+<h1 id="what-is-an-engine-anyway---a-brief-history">What is an <em>engine</em> anyway? - A brief history</h1>
+
+<p>I will, from this point on, begin throwing a bit of jargon around, which might cause a minor amount of confusion. As confusion could lead to stress and nervous tension, which are now serious problems in all parts of the galaxy, I will attempt to not exacerbate this situation further by revealing at least some terminology in advance.</p>
+
+<p>Contrary to popular opinion and willfully ignoring some popular applications of the word “engine”, I am not talking about cars, as those have rather little to do with chess and programming. Yes, they might be tangentially related, as self-driving cars are somewhat in vogue right now and also a topic of machine intelligence, but this connection is almost as tenuous as my interest in automobiles.<sup id="fnref:auto" role="doc-noteref"><a href="#fn:auto" class="footnote" rel="footnote">3</a></sup></p>
+
+<p>In case the term is new to you, dear reader, allow me to clarify: When we use the phrase “chess engine” we quite simply refer to any program that is capable of playing a game of chess. You somehow feed it a representation of a given game state and it chooses a move it deems wise. That is all there is to it. Seems trivial, right?</p>
+
+<h2 id="imagination">Imagination</h2>
+
+<p>The idea of and desire for a program fulfilling this specification is indeed so blindingly obvious that it predates even the computers that could run it. In what is slowly but surely becoming sort of a theme in my articles - and not entirely unintentionally so - the basic concepts we rely on are, of course, based on work <a href="https://en.wikipedia.org/wiki/Alan_Turing">the great Alan Turing</a> and others did somewhen in the 1940s.</p>
+
+<p>Actually, the history here goes back significantly further, centuries even if you allow for various ‘fake’ chess playing automaton regularly displayed to amaze, entertain and dazzle nobility as well as the general public, the most famous of which likely being <a href="https://en.wikipedia.org/wiki/The_Turk">the Mechanical Turk</a>.</p>
+
+<p><img src="/images/mechanical_turk.jpg" alt="The Mechanical Turk" title="A copper engraving of the Mechanical 	Turk" class="centered-image" width="40%" /></p>
+
+<p>This elaborate ‘machine’ was originally constructed by Wolfgang von Kempelen in 1770, toured throughout Europe, playing various illustrious celebrities in the process, was bought by Johann Nepomuk Mälzel in 1805, who exhibited it for another 33 years in even more areas - now including the United States, Canada and Cuba - only to eventually be lost to a fire in 1854.</p>
+
+<p>Even so it turned out to be an elaborate hoax that managed to hide a skilled human operator within the devices seemingly complex interior, its mere existence and more than 60 year long reign during which it captivated the imagination of many an intellectual is quite telling. Consider, for a moment, the sentiment expressed by the great Penn Jillette <a href="https://www.youtube.com/watch?v=S3vTld5pNlI">in this short clip</a> when discussing a scene from the movie <a href="https://en.wikipedia.org/wiki/The_Prestige_(film)">The Prestige</a>:</p>
+
+<blockquote>
+  <p>[…]There is a sense that movies never get, where everything being done in a magic show has to be in some way plausible. […] If a trick is so perfect that there is only one way to do it, well than that is the way you did it.</p>
+</blockquote>
+
+<p>When you attend a magic show, you obviously know you will be fooled. Magicians happen to be the most honest liars you could possibly encounter, so they usually tell you upfront, directly or by implication, that what you will observe uses no supernatural powers, no divine intervention or other impossibilities, only lies, deception and trickery. If they do their job well, than despite your best efforts to see through it, regardless of your unwillingness, your disbelief is suspended. For a brief moment, in spite of all your knowledge and better judgment, you are left utterly dumbfounded, stunned, forced to question the very nature of your reality.<sup id="fnref:foolus" role="doc-noteref"><a href="#fn:foolus" class="footnote" rel="footnote">4</a></sup> Nonetheless, if the effect presented is too outlandish, too extreme, it dulls the wonder. Disappearing some huge public monument, to me, holds far less magnificence than an apparently simple card trick.</p>
+
+<p>This rings even more true if you are trying to sell something as not a trick<sup id="fnref:morals" role="doc-noteref"><a href="#fn:morals" class="footnote" rel="footnote">5</a></sup>, which goes to show that automatically playing a game of chess must have, at the time, seemed fantastical, absolutely wondrous and almost entirely impossible. Almost. There was this tiny sliver of hope. What if it were actually possible? What if Mälzels Machine were in fact just that, a machine? What other feats of mechanical wonder would be possible? How much farther can technologies boundary be stretched?</p>
+
+<p>It is precisely this atmosphere which is evident in the opening paragraphs of a <a href="https://en.wikisource.org/wiki/Maelzel%27s_Chess-Player">famous essay written by the illustrious Edgar Allen Poe and treating the subject matter of the Turk</a>. He describes the automaton as “an object of intense curiosity, to all persons who think”, some of which pronounced it “the most astonishing of the inventions of mankind” and compared it with the “calculating machine of Mr. Babbage” - described with clear reverence - claiming even it would be “altogether beneath it”, were it real.<sup id="fnref:babbage" role="doc-noteref"><a href="#fn:babbage" class="footnote" rel="footnote">6</a></sup>
+He then proceeds to meticulously describe, analyze and dissect observations of the machines exhibitions and presumed workings to outline an argument for why he believed it to be an illusion and purported to reveal how said illusion was achieved.</p>
+
+<p>Now, I absolutely adore Poes prose and whilst one could claim that especially <a href="https://en.wikisource.org/wiki/The_Masque_of_the_Red_Death">The Masque of the Red Death</a> was rather clairvoyant and bears eerie similarities to current events, not everything in this particular article has aged quite as well. Most of it is well reasoned and shows careful deliberation, yet a number of competing explanations are deemed obviously absurd, not meriting even a refutation, whilst the prospect of the machine being a true automaton, acting without human intervention and trickery, was deemed preposterous on the assumption that it was not playing perfectly enough. On the other hand, he asserted that the ability to play chess is in some way fundamentally different from computation, thereby both over- and severely underestimating technologies potential.</p>
+
+<p>A pure and perfect fully autonomous chess machine was eventually constructed in 1912, almost a century after Poes essay. <a href="https://en.wikipedia.org/wiki/El_Ajedrecista">El Ajedrecista</a> did not play an arbitrary game from beginning to end, but restricted to one specific ending - two kings and one rook - it invariably managed to checkmate its opponent.
+Just a few decades later, with the advent of general purpose computing, development accelerated significantly and complete - so not necessarily good - games played automatically were no longer constrained to mere fantasy. Effort from this point on, however, shifted more to the programs and algorithms used rather than mechanical contraptions controlled by it. Nonetheless, even in this regard, we have have come a long way. Some of the <a href="https://www.youtube.com/watch?v=AQLOj-TylGg">brilliant products</a> <a href="https://squareoffnow.com/product/gks">one could buy today</a><sup id="fnref:squareoff" role="doc-noteref"><a href="#fn:squareoff" class="footnote" rel="footnote">7</a></sup> certainly would have exceed even the vivid imagination of a brilliant writer like Poe, seeming so far beyond comprehension <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ClarkesThirdLaw">to be indistinguishable from real magic</a>.</p>
+
+<p>The topic of early hoaxes and machines - as you can see - is rather extensive and cannot possibly be done justice in so small and puny a blogpost. There are some glaring omissions and much more fascinating details to be researched. Several books can and have been dedicated to the subject and some more could clearly be written, but are quite certainly out of scope for this article.<sup id="fnref:moxon" role="doc-noteref"><a href="#fn:moxon" class="footnote" rel="footnote">8</a></sup>
+Which is why we return, once again, to Turing.</p>
+
+<h2 id="reality">Reality</h2>
+
+<p>In the early days, at a time when the field of computer science itself was still in its infancy and physical computers were playing catch up with the brilliant minds of their creators, B. V. Bowden set out to publish a small volume detailing the history, present and likely future of digital computers. Addressed at a general audience, <a href="https://archive.org/details/fasterthanthough00bvbo">Faster than thought</a> collected very accessible contributions by many eminent scientists of the era and is, even today, well worth a read in its entirety.</p>
+
+<p>What I would like to draw your specific attention to right now, however, is <a href="https://docs.google.com/file/d/0B0xb4crOvCgTNmEtRXFBQUIxQWs/">a fascinating article submitted by Turing</a>. 
+Not only did this rather short read break new ground by introducing a contender for the very first chess program, the explanations it contains are among the most lucid and illuminating I could find on the topic of game playing, with many of the concepts and ideas still relevant and in use today. In addition, this seminal paper can serve - not entirely unlike Poes treatise on the Turk above - as a wonderful lens by which to glean the perception of and attitude towards computing in those days, as I’d claim all writing, even technical and explanatory one, in some way reflects the society in which it is produced.</p>
+
+<p>For instance, I mentioned earlier that with the rise of electronic computers effort shifted from machines to programs and a quick perusal of the paper will yield a concise explanation of why this might have been the case. After outlining the questions it seeks to answer, it contains this small gem justifying the approach taken:</p>
+
+<blockquote>
+  <p>“could one make a machine to…” might equally well be replaced by “could one programme an electronic computer to…”</p>
+</blockquote>
+
+<p>This alone serving as ample justification illustrates just how far public understanding had progressed. No longer was a game playing machine considered altogether above a mere calculator. On the contrary, it seemed almost self-evident that if it could be built at all, it could be expressed as a calculation. Computers were slowly starting to be recognized as the very epitome of machine.</p>
+
+<p>To drive home this observation and emphasize the grand promise it held, please allow me to quickly point out two special questions listed at the papers beginning:</p>
+
+<blockquote>
+  <ul>
+    <li>Could one make a machine which would answer questions put to it, in such a way that it would not be possible to distinguish its answers from that of a man?</li>
+    <li>Could one make a machine which would have feelings like you and I do?</li>
+  </ul>
+</blockquote>
+
+<p>Whilst Turing concedes these might not be <em>directly</em> related to the problem at hand - that of chess playing - he claims they are nonetheless connected and likely to be at the tip of the readers tongue.<sup id="fnref:turing_answer" role="doc-noteref"><a href="#fn:turing_answer" class="footnote" rel="footnote">9</a></sup> 
+In this particular work - as well as in this post - such intriguing questions are merely raised, pondered very briefly and then brushed aside, as the author proceeds to prove the central claim: That a machine could be made to play a game of chess.</p>
+
+<p>He does so by first describing clear, deterministic steps such a machine should take and then, lacking a computer capable of actually executing such a program, promptly does it himself.<sup id="fnref:reverse_turing" role="doc-noteref"><a href="#fn:reverse_turing" class="footnote" rel="footnote">10</a></sup>
+The human imitating the hypothetical program later dubbed TuroChamp might have lost to a simple fork, but to my eyes, this does not make the achievement any less monumental. If there was even the shadow of a doubt left about the possibility, this game was more than sufficient to eradicate it. The stage was set for <em>real</em> engines to be created.</p>
+
+<p>Turing himself later attempted to translate his descriptions into a working program, ambitions which were unfortunately left unfinished. <a href="https://en.wikipedia.org/wiki/Alan_Turing#Conviction_for_indecency">As his life was tragically cut short by a society too cruel and backwards to deserve him</a>, it was left for others to pick up the mantle and continue the work. The list of those who did reads almost like a who’s who of eminent computer science pioneers:  <a href="https://en.wikipedia.org/wiki/Claude_Shannon">Claude Shannon</a>, the man who introduced <a href="https://en.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication">the term bit</a>, provided us with an <a href="https://en.wikipedia.org/wiki/Shannon_number">estimate of the games complexity</a> and <a href="https://www.chessprogramming.org/Claude_Shannon#Shannon.27s_Types">a useful classification of search algorithms</a>. <a href="https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)">John McCarthy</a>, inventor of Lisp and garbage collection, proposed <a href="https://www.chessprogramming.org/Alpha-Beta">Alpha-Beta Pruning</a>. <a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>, who really should not need an introduction among my readership, analyzed it in detail and in so doing formulated the notion of <a href="https://www.chessprogramming.org/Node_Types">the different node types</a>. <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Ken Thompson</a>, well known for C, Go, Awk and myriad other miracles, contributed to <a href="https://www.chessprogramming.org/Belle">Belle</a> and was involved in the creation of the first <a href="https://en.wikipedia.org/wiki/Endgame_tablebase">endgame tablebase</a>.</p>
+
+<p>This was but a small selection and I glossed over many a contribution, but you get the idea. What was fiction turned into solid theory, which turned into reality. Eventually, in 2012, even Turings original paper machine was <a href="https://en.chessbase.com/post/reconstructing-turing-s-paper-machine">finally constructed as a real, functional computer program</a> and managed to play what was described as a passable game against <a href="https://en.wikipedia.org/wiki/Garry_Kasparov">the great Garry Kasparov</a>, which it lost in 16 moves.<sup id="fnref:turochamp" role="doc-noteref"><a href="#fn:turochamp" class="footnote" rel="footnote">11</a></sup> That story might, for most of my readers, evoke some memories, as the name Kasparov is of course also inextricably linked with yet another famous and fateful human vs computer match…</p>
+
+<h2 id="dominance">Dominance</h2>
+
+<p>With playing a game of chess now not only a possibility but a reality, the discussion shifted again, to whether a program could play chess better than a human could. <a href="https://www.youtube.com/watch?v=ipRvjS7q1DI&amp;feature=youtu.be&amp;t=44">Not just any human so, it had to be the best of the best</a>.</p>
+
+<p>You see, the battle for most of us was already lost very early on. Nonetheless, <a href="https://en.wikipedia.org/wiki/Hubert_Dreyfus%27s_views_on_artificial_intelligence#Reaction">when we hear a prominent AI critic first mocked chess computers for losing to a 10 year old, only to subsequently lose to a machine</a> in the 60s, it might be an amusing story, but it doesn’t really impress us much. After all, it is just the failure of one man and he - like most of us - was merely an amateur. As long as somewhere out there, there existed at least a single human being who could still reliably best the machines most of the time, we felt safe in our superiority. If one of us is better, we all could be. Humanity still reigns supreme.</p>
+
+<p>It is fitting then, that when in 1997 IBM organized a much publicized match of its custom built <a href="https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)">Deep Blue</a> chess computer against Garry Kasparov, then incumbent world champion and seen by many to this day as the greatest chess player ever, Newsweek magazine not only <a href="https://www.newsweek.com/man-vs-machine-173038">ran a piece on it</a> but sported a cover adequately expressing the weight placed on one solitary humans shoulders:</p>
+
+<p><img src="/images/newsweek_deep_blue.png" alt="&quot;The Brain's Last Stand&quot;" title="what to say?" class="centered-image" width="40%" /></p>
+
+<p>Printed in the lead-up to what was to become a historic event, Kasparov was quoted as stating “This is much bigger than a world-championship match”. And indeed it was. The rather meager 500 seats available to watch live were sold out and millions throughout the world actively followed the games on IBMs website.<sup id="fnref:viewership" role="doc-noteref"><a href="#fn:viewership" class="footnote" rel="footnote">12</a></sup> This match was special. It was <em>not</em> just one man and he was the very opposite of an amateur. This man had not lost even a single match in his entire career. If the machine could beat him, it could beat everybody. He was humankinds champion. The brains last stand. And he lost.</p>
+
+<p>Much has been written and said in the immediate aftermath of the event, mostly downplaying or elevating the scope of the achievement, revelling in either its significance or lack thereof. The match itself was riddled with controversy as the clash of business interests, a spirit of scientific inquiry and the chess players competitive personality gave rise to a battle fought almost as much away from the board as on it. When early on the machine did not play perfectly enough and decided on a move - later assumed to be caused by a simple bug - that seemed almost too human, Kasparov began to suspect foul play and grandmaster intervention, an accusation he hinted at in thinly veiled comments during a press conference. Coupled with the companies generally adversarial treatment of the world champion, like uncomfortable conditions in the playing hall, not providing any games to study his opponent and their inability to convincingly refute his accusations by providing logs, Kasparov grew enraged and convinced his opponents goal was to crush him, not by superior chess playing, but by any means necessary. Atypically for him, the grandmaster never quite managed to regain his composure.</p>
+
+<p>So once victory came, it was not glorious. The triumphant team was not only booed but instructed to not smile, lest such reckless gloating could hurt stock prices. The machine was quickly dismantled and a rematch request denied. The grand winner proved to be not computer science, but IBM, whose value skyrocketed, whilst the consensus soon seemed to be that it wasn’t Deep Blue who won the match, it was Kasparov who lost it.</p>
+
+<p>If one were to look for a pivotal point, there are a number of other candidates of arguably equal or maybe even greater technical importance, even so they were much less advertised outside of specialist communities: The first Deep Blue match, one year prior, contained the first game won by a chess computer against a reigning world champion, paving the way for the rematch and defeat in 1997. In 1998, <a href="https://www.rebel.nl/anand.htm">a match was held between Viswanathan Anand, then world number two and later world champion, and the commercially available chess engine Rebel running on consumer grade, not specially built, hardware</a> and was won by the machine. In 2002, Vladimir Kramnik, the man who eventually dethroned Kasparov, sparred with Deep Fritz in an event dubbed <a href="https://en.wikipedia.org/wiki/Brains_in_Bahrain">Brains in Bahrain</a> and despite being given several advantages only managed to score a draw.</p>
+
+<p>Nevertheless, to the general public, this one fateful encounter in 1997 marked the end of an era, the public culmination of more than half a century of research, the last time any human could realistically hope to beat the best of the machines. The end of our dominance and the beginning of theirs.<sup id="fnref:deep_blue_more" role="doc-noteref"><a href="#fn:deep_blue_more" class="footnote" rel="footnote">13</a></sup></p>
+
+<p>After the match, Kasparov continued to dominate the human chess world for a while, eventually retired into politics and became a fervent advocate <a href="https://www.amazon.com/Deep-Thinking-Machine-Intelligence-Creativity/dp/1473653517">for cooperating with machine intelligence to maximize both of our potential</a>.<br />
+IBM, meanwhile has moved on to other ventures, but still sees the value of game playing for advertising progress. Not only has their <a href="https://en.wikipedia.org/wiki/Watson_(computer)">Watson system</a> defeated humans at <a href="https://en.wikipedia.org/wiki/Jeopardy!">Jeopardy!</a>, another system of theirs participated <a href="https://www.youtube.com/watch?v=3_yy0dnIc58">in a competitive debate</a>.<br />
+Chess engines since have inexorably marched on and exploded in strength. When Kasparov, <a href="https://www.youtube.com/watch?v=8RVa0THWUWw&amp;feature=youtu.be&amp;t=1814">in more recent interviews</a>, points out that modern engines would laugh at the moves made by both him and Deep Blue and smartphones could easily crush IBMs monster, it is not only true but also <a href="https://www.reddit.com/r/chess/comments/76cwz4/15_years_of_chess_engine_development/">not only a statement about the progress in hardware</a>.</p>
+
+<h1 id="why">Why?</h1>
+
+<p>More could be said, but there is work to do and your time is valuable, which is why I shall end my history lesson at this point. I believe it is evident that at all times, since the very inception of computer science and even long before that, game playing was stretching and redefining what was considered possible with <em>mere</em> machines.</p>
+
+<p>Which is all very interesting, yet why should I - or worse, even you dear reader - bother to replicate the brilliant work of others? This story is beautiful, but it clearly sounds as if it had already ended? Why push for yet another unnecessary and unsatisfying sequel? Haven’t we had enough of those lately?</p>
+
+<p>The short answer is - as with pretty much all topics covered on this lovely blog of mine - because it is interesting, fun and educational. I really cannot stress this enough, so at the risk of repeating myself, allow me to stoop down to the level of <a href="https://en.wikipedia.org/wiki/Argument_from_authority">argument from authority</a>:<br />
+With big companies, like IBM and Google, there are obviously economic interests and publicity at play, but that is not sufficient to explain the motivation of all the above mentioned outstanding individuals to spend time and energy on a problem which is ultimately no more than a pleasurable pastime. Apparently, an interest in game playing programs is - at least superficially - linked with an interest and excellence in computer science. What better method is there, than imitation, to truly grasp what it is that feels so fascinating, what drew in all those brilliant people to lay the foundations I and myriad others can now build on? <sup id="fnref:bragging_rights" role="doc-noteref"><a href="#fn:bragging_rights" class="footnote" rel="footnote">14</a></sup> There are giants on whose shoulders I stand, yet I fail to see as far as they did. I would love to change that.</p>
+
+<p>“Well ok then”, I hear you concur, “but why chess? Why not Go? Why not Shogi?<sup id="fnref:shogi" role="doc-noteref"><a href="#fn:shogi" class="footnote" rel="footnote">15</a></sup> Why not <a href="https://en.wikipedia.org/wiki/Arimaa">Arimaa</a>?”. The reason here is twofold.</p>
+
+<p>On one hand is obviously my personal love for chess. It already captivated me when I was taught to play the game by my stepfather in my early teens, but ever since me and a bunch of good friends<sup id="fnref:better" role="doc-noteref"><a href="#fn:better" class="footnote" rel="footnote">16</a></sup> managed to survive a particularly boring and tedious stretch of school by continuously playing behind our <em>“teachers”</em> backs it irreversibly managed to occupy a very special place in my heart.</p>
+
+<p>On the other hand, the story is far from over. There is the occasional, <a href="https://en.wikipedia.org/wiki/Cobra_Kai">rare sequel that turns out to improve upon the original</a>. After it turned the world of Go upside down with <a href="https://en.wikipedia.org/wiki/AlphaGo">AlphaGo</a> 4 years ago, DeepMind continued to crush its own creation with <a href="https://en.wikipedia.org/wiki/AlphaGo_Zero">yet another devastating innovation</a>, which it promptly applied to chess to defeat the strongest engine to date. <a href="https://en.wikipedia.org/wiki/Leela_Chess_Zero">Leela</a>, the open source descendant of this experiment, continued to push chess engine development into less established and more innovative directions. Just a little more than a month ago, <a href="https://www.chess.com/news/view/stockfish-absorbs-nnue-100-elo">Stockfish(and various other top engines) absorbed NNUE</a>, an <a href="https://en.wikipedia.org/wiki/Efficiently_updatable_neural_network">evaluation technique originally developed for shogi</a> to gain a never before seen <a href="https://github.com/glinscott/fishtest/wiki/Regression-Tests">jump in playing strength</a>. Computer chess today is more vibrant and fast moving than ever before.</p>
+
+<p>“Alright”, you concede, “but do you think me a fool?! I looked - as any diligent reader should - at the code you linked and it does not apply any of the wondrous things you mentioned. There is no NNUE! There is no <a href="https://en.wikipedia.org/wiki/Monte_Carlo_tree_search">MCTS</a>! Not a single neural network in sight, nothing special, just plain old alpha-beta and hand crafted evaluation functions! Justify yourself!”</p>
+
+<p>Ok, you got me. I admit, I am not quite there yet. Even so I admire the progress made, I just can’t bring myself to like the methods used. Machine learning in general and neural networks in particular are far more useful than they have any right to be. Unfortunately, you can’t argue with results and <a href="https://en.wikipedia.org/wiki/GPT-3">GPT-3</a> has clearly taught us that quantity has a quality all its own. Nevertheless, the fields unnaturally successful approach of beating quality with quantity, processing power and energy just doesn’t ring right with me.</p>
+
+<p><a href="https://en.wikiquote.org/wiki/John_von_Neumann">With four parameters I can fit an elephant, and with five I can make him wiggle his trunk.</a>. And with a few million we can win at chess, but what have we learned?<sup id="fnref:obligatory_xkcd" role="doc-noteref"><a href="#fn:obligatory_xkcd" class="footnote" rel="footnote">17</a></sup></p>
+
+<p>Classic, hand crafted evaluation functions <a href="https://hxim.github.io/Stockfish-Evaluation-Guide/">can explain themselves</a>. Many parameters are, of course, found by automated tuning and it is hard or impossible to see why any particular one is right or wrong. Nonetheless, by inspecting how they turn out, I can learn something and gain understanding previously not available to me. By inspecting which weight is given to which feature of a given position, I myself should ideally be able to improve.</p>
+
+<p>Neural network powered engines, on the other hand, are much closer to <a href="https://www.youtube.com/watch?v=fp7Pq7_tHsY&amp;feature=youtu.be&amp;t=1356">a real black box</a> and it is often impossible to understand the solutions they provide. No useful information can be gleaned from their output except the obvious: which move was chosen and how likely a specific outcome is believed to be. It is nice to know that the answer is 42, but without really knowing which questions we asked the only ones to really profit are pundits proclaiming to know what they cannot.</p>
+
+<p>As such, at least for now, I shall keep my Pokemon Syndrome - wanting to be the very best - in check, stubbornly refuse to bow to the overwhelming power of the networks and try to see how far I can get without them. I am fully aware that my behavior is unnecessarily and unjustifiably prideful, whilst my understanding of what I am criticizing remains severely lacking. Yet, this is supposed to be fun and educational, so I shall do it my way, all shortcomings included.</p>
+
+<h1 id="introducing-">Introducing …</h1>
+
+<p>And so we - once again - arrive at a point in an article where I perform a sudden and abrupt turn and the tone switches from one of calm, dispassionate objectivity to overtly emotional and sentimental. You see, when introducing this topic I mentioned in passing and comically warped the slightly worn Newton quote about standing on the shoulders of giants. Well, here is one giant unlike any other on whose shoulders I stood, leaned and sat:</p>
+
+<p><img src="/images/papa.png" alt="Engine Logo" title="My father" class="centered-image" width="40%" /></p>
+
+<p>You are looking at a picture of my father<sup id="fnref:hand" role="doc-noteref"><a href="#fn:hand" class="footnote" rel="footnote">18</a></sup>, now 61 years of age. Or he would have been, had he not died suddenly and tragically slightly more than one year ago. There is so much more I have to thank him for than I could adequately express here and unfortunately more than I managed to express in his lifetime. Without his upbringing, his influence, I would not have developed the necessary patience, perseverance and confidence to complete and publish a work like this. As such I would like to dedicate the release to his memory. I have long struggled with naming my engine - we all know the adage about the two really hard problems in computer science: cache misses, naming and off by one errors - and for far too long a time my working title was the beautifully arrogant, self-centered and simplistic ‘philchess’. Now, if it were punny, I could accept that, it would be a good thing. Madchess is a brilliant name, I love it and Erik Madsen deserves all the credit he can get for his <a href="https://www.madchess.net/">helpful and wonderful blog</a>. But with my name, this just doesn’t work. Hence, I have now decided to baptize my engine <strong><em>paulchen332</em></strong>, reusing the online handle my father adopted eons ago. Allow me to introduce you:</p>
+
+<p><img src="/images/pchess_logo.png" alt="Engine Logo" title="Isn't it lovely?" class="centered-image" width="40%" /></p>
+
+<p>It might just be a tiny pawn now, but its aim is to be the very best, it just got serious - as you can see by the turned cap - and it needs just one small step to become the strongest there is.<sup id="fnref:2dpixx" role="doc-noteref"><a href="#fn:2dpixx" class="footnote" rel="footnote">19</a></sup> You can pay it a visit by heading over to <a href="https://github.com/philipplenk/paulchen332">github</a> ;-).<sup id="fnref:source_incomplete" role="doc-noteref"><a href="#fn:source_incomplete" class="footnote" rel="footnote">20</a></sup></p>
+
+<h1 id="how">How?</h1>
+
+<p>If you have read from the very beginning, dear reader, and managed to stay with me up to here, I would like to thank you for your incredible patience, commend your study of history and express my eternal gratitude. If you have not and simply skipped to here, I am most grateful for your interest in my work, glad you could join us and urge you to read on, as I finally begin to explain just how a chess playing program actually works.<sup id="fnref:favor" role="doc-noteref"><a href="#fn:favor" class="footnote" rel="footnote">21</a></sup></p>
+
+<p>In my glorious introduction, I pointed out structural similarities this article shares with my <a href="/2020/06/22/klobigb_overview.html">first one about gameboy emulation</a>. The parallels do not stop at simply being structural so. Just like the work on my emulator, in the grand scheme of things, this is all rather insignificant and hardly innovative. What I have done and what I will write about is not exactly new. Others have done great jobs and I have not fundamentally reinvented the wheel. My implementations are, however, my own. I have put considerable thought into every detail, I have adjusted known algorithms to serve my own needs and I try my very best at providing the most accessible explanations possible. I hope and believe my perspectives and approach will be enlightening and of use to all of you, if only in part.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>On a very, very high level, I have already specified the requirements our program has to fulfill at the <a href="#imagination">beginning of our history section</a>. Allow me to reiterate this most complicated of descriptions with some much needed visual aid:</p>
+
+<p><img src="/images/pchess_purpose.png" alt="Game State -&gt; Engine -&gt; Best Move" title="Simple?" class="centered-image" width="80%" /></p>
+
+<p>That is really all there is to it. The details responsible for how we get there, however, might be a little more involved. Despite the wonderful illustration above, the task before us might still seem ever so slightly daunting and even you, my most lovely and intelligent readers, might be stumped as to where to start.</p>
+
+<p>The problems already begin with the apparently simple input and output this construction demands, which I have left woefully underspecified. What exactly constitutes what I described as the “game state”? How is it conveyed? What does it mean for a move to be “the best”?</p>
+
+<p>Answers to those questions are not exactly trivial and deserve at least one article each<sup id="fnref:future" role="doc-noteref"><a href="#fn:future" class="footnote" rel="footnote">22</a></sup>, but they can guide us. To help us get going at all, we can even simplify a little. For reasons I shall elaborate on in one of those future articles, which move is best cannot necessarily be determined with certainty in most positions. As such, if we were content with playing very, very badly, with the occasional brilliancy interspersed, simply choosing one move at random is perfectly sufficient.</p>
+
+<p>This might seem significantly easier, yet when thinking about it for a few moments, we encounter another issue to be solved:</p>
+
+<p><img src="/images/chess_invalid_move0.svg" alt="A nonsensical move" title="Bishops only move on diagonal" class="centered-image" width="40%" /></p>
+
+<p>It is impossible to move from a1 to a3 here, as the piece on a1 is neither a rook nor a queen, but a bishop. Not all moves are possible at all times.</p>
+
+<p>Further, not all moves which seem possible at a glance are necessarily legal:</p>
+
+<p><img src="/images/chess_invalid_move1.svg" alt="An illegal move" title="We may not leave our king in check" class="centered-image" width="40%" /></p>
+
+<p>Capturing with the pawn on h4 in this position would expose our king, which could subsequently be viciously slaughtered by a member of the clergy, something the rules do not allow.</p>
+
+<p>There are multiple other intricacies and subtleties involved, mostly with castling and en passant. Which leaves us with the following conclusion: In order to determine which move we <em>should</em> play, we must first know which moves we <em>could</em> play.</p>
+
+<p>This interesting problem, of determining legal moves for a given position, is called - unsurprisingly - <a href="https://www.chessprogramming.org/Move_Generation"><strong>move generation</strong></a> and is one of the most frequently employed parts inside a chess program. As such, it turns out to be a major target for optimization.<sup id="fnref:movegen" role="doc-noteref"><a href="#fn:movegen" class="footnote" rel="footnote">23</a></sup></p>
+
+<p>The reason it has to be used so often is that we rarely look at a single position in isolation. It proves much more helpful to examine multiple potential future positions, and to reach any of those a chain of legal moves has to be followed. This process, determining which continuations to observe and from that drawing conclusions about which lines are most promising to pursue, is what we refer to - in grand tradition of obvious names - as the <a href="https://www.chessprogramming.org/Search"><strong>Search</strong></a>.</p>
+
+<p>Search itself does, however, suffer from one major flaw. We should not - and cannot - follow every possible sequence of moves to its ultimate conclusion. At some point, we have to decide to terminate the search and guess how good or bad the thus chosen final position looks for either player. Occasionally, this is downright trivial:</p>
+
+<p><img src="/images/chess_overwhelming_material.svg" alt="Overwhelming advantage" title="Which side is better?" class="centered-image" width="40%" /></p>
+
+<p>Whilst there is no immediate mate to be seen, without even trying to find one most humans will, at but a cursory glance, recognize which side is winning here. Most other positions are ever so slightly more subtle so, which is why the quality of such <a href="https://www.chessprogramming.org/Evaluation"><strong>static evaluation</strong></a> plays a large role in determining an engines playing strength.</p>
+
+<p>In order to execute all of those operations, we have to somehow keep a representation of our chessboard in memory and operate on it. This <a href="https://www.chessprogramming.org/Board_Representation"><strong>board representation</strong></a> should be carefully chosen to allow the most common operations to be executed as efficiently as possible.</p>
+
+<p>And with that, we shall conclude our high level overview. I do hope this listing of major building blocks has proven somewhat illuminating and I managed to convey a general idea of how the parts interact. The post you are currently reading will, however, not explore them further, as I have thus far neglected one minor issue of paramount importance: how do we get our state to the engine and how does it report its move back?</p>
+
+<h2 id="uci">UCI</h2>
+
+<p>If all we desired were the minimal viable interface, it would be perfectly sufficient to simply input some arbitrary form of from-square/to-square pair on standard input and output the same. Unfortunately for us, most non professional humans are not particularly adept at or in favor of blind chess and manually keeping track on a real board is certainly more tedious than strictly necessary. As such, the majority of our users would be significantly more satisfied if we managed to place some form of graphical representation resembling a physical board in front of them and allowed them to act on it.</p>
+
+<p>Such a thing is certainly both possible and interesting. Implementing a beautiful and intuitive user interface poses fascinating challenges which can only help us grow as developers, yet those challenges are very different and quite far removed from the one we are actually attempting to solve. We could easily end up being too distracted to get the core parts into working order any time soon.</p>
+
+<p>Furthermore, lovely pictures being the only way to interact with our program would render playing other machines annoyingly difficult. Interfaces created for humans are often notoriously hard for machines to process and vice versa, so tying our code too closely to one particular participant will necessarily inconvenience the other.<sup id="fnref:cars_again" role="doc-noteref"><a href="#fn:cars_again" class="footnote" rel="footnote">24</a></sup></p>
+
+<p>Luckily for us, others recognized this way before I even started considering writing an engine of my own and have taken measures to solve it. You see, dear reader, I have not been completely upfront with you earlier. Or at least, I have simplified a little, as it is not entirely accurate to refer to just any chess playing program as an engine. If it had a built in GUI, it would be more than that. The reason we use the term <em>engine</em> is because the thus described program might be central and drive the machine, but is usually not used on its own. To take full advantage of it, we do not execute it directly but in conjunction with a third party program, like the wonderful and incredibly useful <a href="https://github.com/cutechess/cutechess">Cutechess</a>, which can invoke one or multiple engines in the background and mediate between them and us pesky humans.</p>
+
+<p>To avoid duplicated and repetitive effort, it proved beneficial for most programs to agree on how exactly to talk to the outside world. This way complete decoupling is achieved and anyone can write a user interface that can talk to any engine following the protocol. Conversely, all an engine author has to do is implement the protocol and users are free to chose their favorite GUI to play against it. There are two popular such communication protocols to choose from, <a href="https://www.chessprogramming.org/Chess_Engine_Communication_Protocol">CECP</a> and <a href="https://www.chessprogramming.org/UCI">UCI</a>.</p>
+
+<p>For reasons which are not entirely rational and shall as such remain unmentioned, I decided on UCI. The exact details for all supported commands are specified <a href="http://download.shredderchess.com/div/uci.zip">here</a> and I shall not bore you by repeating each and every one of them. Instead, I’ll just explain how it works in the most general terms and illustrate with some hopefully well chosen examples how I went about integrating the processing of UCI commands in my code. If you are interested in more, you can always check out <a href="https://github.com/philipplenk/paulchen332/tree/main/include/philchess/uci">the complete source code</a>.</p>
+
+<p>To begin examining how the protocol works, let’s have a quick look at a typical session:</p>
+
+<noscript><a href="https://asciinema.org/a/gkqumLPEpJnsA41hFDmVksaOo" target="_blank"><img src="https://asciinema.org/a/gkqumLPEpJnsA41hFDmVksaOo.svg" /></a></noscript>
+<script id="asciicast-gkqumLPEpJnsA41hFDmVksaOo" src="https://asciinema.org/a/gkqumLPEpJnsA41hFDmVksaOo.js" async></script>
+
+<p>As you can see, all communication is done via standard input and output of text commands, one line each. Communication is initiated by a simple “uci” and terminated with the intuitive “quit”. Other commands might have a varying number of optional arguments attached. An interesting property with large implications on possible implementations can be observed in the second call to go. During processing, before the search is completed and a result returned, another command - “stop” - is entered, causing the search to terminate prematurely. To put it in the words of the official documentation:  “the engine must always be able to process input from stdin, even while thinking”.</p>
+
+<p>Before continuing, I would like to offer a word of advice to my dear readers: The details which follow cannot be explained generically, so I shall assume some familarity with the C++ programming language and, lacking that, following my explanations might be neither easy nor valuable. If, at any point, you feel overwhelmed, feel free to <a href="#outlook">skip to the end</a>.</p>
+
+<p>Brief intermissions aside, postponing the problem of parallelism for a moment and assuming we had an engine class with appropriate member functions, connecting those to a command line interface becomes downright trivial:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">ENGINE_T</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">IO_T</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span><span class="nc">ARGS_T</span><span class="p">&gt;</span>
+<span class="kt">void</span> <span class="nf">run_cli</span><span class="p">(</span><span class="n">IO_T</span> <span class="n">io</span><span class="p">,</span> <span class="n">ARGS_T</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">ENGINE_T</span> <span class="n">engine</span><span class="p">{</span><span class="n">io</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">ARGS_T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)...};</span>
+	
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="o">::</span><span class="n">string_view_literals</span><span class="p">;</span>
+	<span class="k">using</span> <span class="n">command_handler_t</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">add_pointer_t</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">ENGINE_T</span><span class="o">&amp;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+	
+	<span class="k">constexpr</span> <span class="k">auto</span> <span class="n">command_map</span><span class="o">=</span><span class="n">ptl</span><span class="o">::</span><span class="n">make_fixed_flatmap</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="p">,</span> <span class="n">command_handler_t</span><span class="o">&gt;</span><span class="p">(</span>
+	<span class="p">{</span>
+		<span class="p">{</span> <span class="s">"uci"</span><span class="n">sv</span><span class="p">,</span>			<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">uci</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"debug"</span><span class="n">sv</span><span class="p">,</span>		<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">debug</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"isready"</span><span class="n">sv</span><span class="p">,</span>		<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">isready</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"setoption"</span><span class="n">sv</span><span class="p">,</span>	<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">setoption</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"register"</span><span class="n">sv</span><span class="p">,</span>		<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">do_register</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"ucinewgame"</span><span class="n">sv</span><span class="p">,</span>	<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">ucinewgame</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"position"</span><span class="n">sv</span><span class="p">,</span>		<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">position</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"go"</span><span class="n">sv</span><span class="p">,</span>			<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">go</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"stop"</span><span class="n">sv</span><span class="p">,</span>			<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">stop</span><span class="o">&gt;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="s">"ponderhit"</span><span class="n">sv</span><span class="p">,</span>	<span class="n">detail</span><span class="o">::</span><span class="n">call_helper_v</span><span class="o">&lt;&amp;</span><span class="n">ENGINE_T</span><span class="o">::</span><span class="n">ponderhit</span><span class="o">&gt;</span> <span class="p">},</span>
+	<span class="p">});</span>
+	
+	<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">,</span> <span class="n">cmd</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(;;)</span>
+	<span class="p">{</span>
+		<span class="n">line</span><span class="o">=</span><span class="n">io</span><span class="p">.</span><span class="n">input</span><span class="p">();</span>
+		<span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">stream</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+		<span class="n">stream</span><span class="o">&gt;&gt;</span><span class="n">cmd</span><span class="p">;</span>
+		
+		<span class="k">if</span><span class="p">(</span><span class="n">cmd</span><span class="o">==</span><span class="s">"quit"</span><span class="n">sv</span><span class="p">)</span>
+			<span class="k">break</span><span class="p">;</span>
+		
+		<span class="k">if</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span><span class="o">=</span><span class="n">command_map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span> <span class="n">it</span><span class="o">!=</span><span class="n">command_map</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+			<span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span><span class="n">stream</span><span class="p">);</span>
+		<span class="k">else</span>
+			<span class="n">io</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Unknown command '"</span><span class="p">,</span><span class="n">cmd</span><span class="p">,</span><span class="s">"' ;_;"</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>To the uninitiated, it might look like there is a lot going on here, but it is really not. About half of the code is only concerned with constructing an object of the engine class with the passed arguments and defining a simple map providing one function pointer for each command. Afterwards it simply loops, repeatedly reading one line of input and decomposing it into its first word and the rest. The <a href="https://en.cppreference.com/w/cpp/io/basic_istringstream">stringstream</a> conveniently skips over any leading and trailing whitespace, which is another requirement of the UCI protocol. A quit command ends our processing, any other one is searched for in the map. If found, the relevant function pointer is invoked, passing the engine object and the stringstream containing the rest of the line. I’d claim the most interesting parts are those very function pointers and how we get them, so let’s examine that in some more detail.</p>
+
+<p>They are apparently some sort of variable template named <em>detail::call_helper_v</em> instantiated with a member function pointer.<sup id="fnref:register" role="doc-noteref"><a href="#fn:register" class="footnote" rel="footnote">25</a></sup> Here it is:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">auto</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">call_helper</span><span class="p">;</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">C</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">R</span><span class="p">,</span> <span class="k">typename</span><span class="o">...</span> <span class="nc">ARG_T</span><span class="p">,</span> <span class="n">R</span><span class="p">(</span><span class="n">C</span><span class="o">::*</span><span class="n">memfun</span><span class="p">)(</span><span class="n">ARG_T</span><span class="p">...)&gt;</span>
+<span class="k">class</span> <span class="nc">call_helper</span><span class="o">&lt;</span><span class="n">memfun</span><span class="o">&gt;</span>
+<span class="p">{</span>
+	<span class="nl">public:</span>
+	<span class="k">static</span> <span class="kt">void</span> <span class="n">call</span><span class="p">(</span><span class="n">C</span><span class="o">&amp;</span> <span class="n">handler</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span><span class="o">&amp;</span> <span class="n">data</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">call_impl</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">index_sequence_for</span><span class="o">&lt;</span><span class="n">ARG_T</span><span class="p">...</span><span class="o">&gt;</span><span class="p">{});</span>
+	<span class="p">}</span>
+	
+	<span class="k">private</span><span class="o">:</span>
+	<span class="k">template</span> <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="p">...</span><span class="n">IDX</span><span class="p">&gt;</span>
+	<span class="k">static</span> <span class="kt">void</span> <span class="nf">call_impl</span><span class="p">(</span><span class="n">C</span><span class="o">&amp;</span> <span class="n">handler</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span><span class="o">&amp;</span> <span class="n">data</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">index_sequence</span><span class="o">&lt;</span><span class="n">IDX</span><span class="p">...</span><span class="o">&gt;</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">decay_t</span><span class="o">&lt;</span><span class="n">ARG_T</span><span class="o">&gt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">args</span><span class="p">;</span>
+		<span class="p">((</span><span class="n">data</span><span class="o">&gt;&gt;</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">IDX</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)),...);</span>
+		
+		<span class="p">(</span><span class="n">handler</span><span class="p">.</span><span class="o">*</span><span class="n">memfun</span><span class="p">)(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">IDX</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">))...);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">auto</span> <span class="n">v</span><span class="p">&gt;</span>
+<span class="k">constexpr</span> <span class="k">auto</span> <span class="n">call_helper_v</span> <span class="o">=</span> <span class="n">call_helper</span><span class="o">&lt;</span><span class="n">v</span><span class="o">&gt;::</span><span class="n">call</span><span class="p">;</span></code></pre>
+</figure>
+
+<p>Now this might be a bit harder to swallow for casual C++ users, but please bear with me for a little longer. To get this out of the way first, what the code actually accomplishes is simple: it extracts arguments of the appropriate type from the stringstream (which holds the rest of the input line) and calls the dedicated member function. So our goal here is for a member function like <em>void gun(int a, const float&amp;b)</em> to be invocable with the command line “gun 42 3.14” and do the right thing. With this preamble, allow me to describe how the code above manages to accomplish just that.</p>
+
+<p>The variable template <em>call_helper_v</em> at the end would not be necessary and exists just as a convenience to save us from repeatedly typing <em>::call</em> at the site of usage, whilst the real work is done by the class template declaration above. It expects a <a href="https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter">non-type template parameter</a> of arbitrary allowed type, but is only specialized for member function pointers. The purpose of this somewhat convoluted construction is to get at the argument types expected by said member function, which are now available as the parameter pack <em>ARG_T</em>. So if we had a simple class like this:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">fun</span>
+<span class="p">{</span>
+	<span class="kt">void</span> <span class="n">gun</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">);</span> 
+<span class="p">};</span></code></pre>
+</figure>
+
+<p>and instantiated the template as</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="n">call_helper</span><span class="o">&lt;&amp;</span><span class="n">fun</span><span class="o">::</span><span class="n">gun</span><span class="o">&gt;</span><span class="p">;</span></code></pre>
+</figure>
+
+<p>C would equal fun (our class), R would be void (our return type) and ARG_T would be &lt;int,const float&amp;&gt; (the argument types). This allows us to define a <a href="https://en.cppreference.com/w/cpp/utility/tuple">std::tuple</a> capable of holding variables for storing all argument values, regardless of which combination the member function expects. In the running example, <em>args</em> would be a <em>std::tuple&lt;int,float&gt;</em>. Notice that I dropped the const qualifier and reference, a job done in the code by <a href="https://en.cppreference.com/w/cpp/types/decay">std::decay</a>. Our function might expect a reference, but this reference must have something to refer to, which is the tuple element we store.</p>
+
+<p>Now that we have our variables - one for each function argument - we utilize the normal, potentially overloaded, <a href="https://en.cppreference.com/w/cpp/io/basic_istream/operator_gtgt">operator»</a> to extract values from our input line into those variables. So the code we would want our template to generate ought to look something like this:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="n">data</span><span class="o">&gt;&gt;</span><span class="n">first_argument</span><span class="p">;</span>
+<span class="n">data</span><span class="o">&gt;&gt;</span><span class="n">second_argument</span><span class="p">;</span>
+<span class="c1">//...</span></code></pre>
+</figure>
+
+<p>As the variables are stored as members of a std::tuple, we have to utilize <a href="https://en.cppreference.com/w/cpp/utility/tuple/get">std::get</a> to use them:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="n">data</span><span class="o">&gt;&gt;</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tuple</span><span class="p">);</span>
+<span class="n">data</span><span class="o">&gt;&gt;</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tuple</span><span class="p">);</span>
+<span class="c1">//...</span></code></pre>
+</figure>
+
+<p>This looks, to the untrained eye, suspiciously close to the most basic use case of a simplistic for loop. And indeed it would be, if “0” and “1” above were function arguments, not non-type template parameters. As it stands, the following code we would like to write will unfortunately fail to compile:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">...(</span><span class="n">ARG_T</span><span class="p">);</span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">data</span><span class="o">&gt;&gt;</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">i</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tuple</span><span class="p">);</span></code></pre>
+</figure>
+
+<p>Lacking a constexpr variation of for, we have to resort to more functional methods to achieve the same result. This is why the private function template with a <a href="https://en.cppreference.com/w/cpp/utility/integer_sequence">std::index_sequence</a> argument is needed. <em>std::index_sequence_for&lt;int,const float&amp;&gt;</em> will yield a std::index_sequence&lt;0,1&gt;, and passing this as a parameter to the call_impl will deduce &lt;0,1&gt; as the IDX pack, exactly the values our for loop would have iterated over. With this pack we can, at compile time, employ a <a href="https://en.cppreference.com/w/cpp/language/fold">fold expression</a> to generate the calls to std::get we so desired:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="p">((</span><span class="n">data</span><span class="o">&gt;&gt;</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">IDX</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)),...);</span></code></pre>
+</figure>
+
+<p>We then employ the same “trick” to generate an argument list for the function call and our work is done. Slightly more complicated arguments, like chess positions as <a href="https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation">FEN strings</a> or similar are cleanly delegated to dedicated <a href="https://github.com/philipplenk/paulchen332/blob/main/include/philchess/uci/types.hpp">types and overloads for stream extraction</a>.</p>
+
+<p>Which leaves only two problems we shall now try to solve in tandem: one of tight coupling and the one of parallelism already mentioned above: Preferably we would like to have most of our engine code isolated from all this protocol madness. Maybe one day I will realize the errors of my ways, see the light and convert to CECP? If so, do I really want to change huge parts of my code? Maybe one day, in a bout of utter madness, I will suddenly decide that it could be a cute idea to replicate Turochamp for modern GUIs? If so, would I really want to duplicate all the UCI specific member functions which are rather tedious and independent?<sup id="fnref:past_turo" role="doc-noteref"><a href="#fn:past_turo" class="footnote" rel="footnote">26</a></sup> Furthermore, the core engine code does not only have to be isolated structurally but also in execution, as it must run concurrently with command processing.</p>
+
+<p>How do we solve this, you ask? With yet another level of indirection of course! We wrap our engine in another class providing the required interface<sup id="fnref:facade" role="doc-noteref"><a href="#fn:facade" class="footnote" rel="footnote">27</a></sup> and safely executing engine functionality in a dedicated thread. Here is the declaration:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">ENGINE_T</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">IO_T</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">wrapper</span>
+<span class="p">{</span>
+	<span class="nl">public:</span>
+	<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="o">...</span> <span class="nc">ARGS</span><span class="p">&gt;</span>
+	<span class="n">wrapper</span><span class="p">(</span><span class="n">IO_T</span> <span class="n">io</span><span class="p">,</span> <span class="n">ARGS</span><span class="o">&amp;&amp;</span> <span class="p">...</span><span class="n">args</span><span class="p">);</span>
+	
+	<span class="o">~</span><span class="n">wrapper</span><span class="p">();</span>
+	
+	<span class="kt">void</span> <span class="n">uci</span><span class="p">();</span>
+	
+	<span class="kt">void</span> <span class="n">debug</span><span class="p">(</span><span class="n">debug_setting</span> <span class="n">setting</span><span class="p">);</span>
+	
+	<span class="c1">//[...] one function for each UCI command </span>
+		
+	<span class="nl">private:</span>
+	<span class="n">IO_T</span> <span class="n">io_</span><span class="p">;</span>
+	<span class="n">pcl</span><span class="o">::</span><span class="n">monitor</span><span class="o">&lt;</span><span class="n">ENGINE_T</span><span class="o">&gt;</span> <span class="n">engine_</span><span class="p">;</span>
+		
+	<span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">worker_thd_</span><span class="p">;</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">should_stop_</span><span class="p">;</span>
+	<span class="n">pcl</span><span class="o">::</span><span class="n">locked_queue</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">()</span><span class="o">&gt;&gt;</span> <span class="n">task_queue_</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
+</figure>
+
+<p>I omitted most UCI functions for the sake of brevity, but the general idea should be reasonably easy to grasp. This wrapper template requires an engine type and a type to handle input/output and stores an instance of each of these as a member variable. The engine is stored in a <a href="https://en.wikipedia.org/wiki/Monitor_(synchronization)">monitor</a>, which simply pairs it with a <a href="https://en.cppreference.com/w/cpp/thread/mutex">std::mutex</a> and ensures it can only be accessed when a lock is held. Further, it holds a thread responsible for doing all the real work, hence its name, and a simple thread safe queue to communicate with that thread. <em>should_stop_</em> is passed to the engines search function to potentially notify it of interruption.</p>
+
+<p>The worker thread itself is incredibly simple:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="n">worker_thd_</span><span class="p">{[</span><span class="k">this</span><span class="p">]()</span>
+<span class="p">{</span>
+	<span class="k">for</span><span class="p">(;;)</span>
+	<span class="p">{</span>
+		<span class="k">auto</span> <span class="n">fun</span><span class="o">=</span><span class="n">task_queue_</span><span class="p">.</span><span class="n">wait_and_pop</span><span class="p">();</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">fun</span><span class="p">())</span>
+			<span class="k">break</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}},</span></code></pre>
+</figure>
+
+<p>It simply loops, waits until it can pull something from the queue, executes whatever function it finds there and quits the loop and thread if this function call returns false.<sup id="fnref:bool_return" role="doc-noteref"><a href="#fn:bool_return" class="footnote" rel="footnote">28</a></sup> The queue is filled when certain UCI commands are triggered, for instance:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">ENGINE_T</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">IO_T</span><span class="p">&gt;</span>
+<span class="kt">void</span> <span class="n">wrapper</span><span class="o">&lt;</span><span class="n">ENGINE_T</span><span class="p">,</span> <span class="n">IO_T</span><span class="o">&gt;::</span><span class="n">position</span><span class="p">(</span><span class="n">board_position</span> <span class="n">pos</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">should_stop_</span><span class="o">=</span><span class="nb">true</span><span class="p">;</span>
+	<span class="n">task_queue_</span><span class="p">.</span><span class="n">push</span><span class="p">([</span><span class="k">this</span><span class="p">,</span><span class="n">pos</span><span class="o">=::</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">pos</span><span class="p">)]()</span>
+	<span class="p">{</span>
+		<span class="n">engine_</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="n">ENGINE_T</span><span class="o">&amp;</span> <span class="n">engine</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">engine</span><span class="p">.</span><span class="n">setup</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">fen</span><span class="p">);</span>
+			<span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">m</span><span class="o">:</span><span class="n">pos</span><span class="p">.</span><span class="n">moves</span><span class="p">)</span>
+				<span class="n">engine</span><span class="p">.</span><span class="n">do_move</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+		<span class="p">});</span>
+		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="p">});</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>Other commands are entirely independent and do not even interact with the worker thread:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">ENGINE_T</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">IO_T</span><span class="p">&gt;</span>
+<span class="kt">void</span> <span class="n">wrapper</span><span class="o">&lt;</span><span class="n">ENGINE_T</span><span class="p">,</span> <span class="n">IO_T</span><span class="o">&gt;::</span><span class="n">isready</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">io_</span><span class="p">.</span><span class="n">output</span><span class="p">(</span><span class="s">"readyok"</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>As always, check out <a href="https://github.com/philipplenk/paulchen332/blob/main/include/philchess/uci/wrapper.hpp">the source code</a> for all details and feel free to ask for clarifications or teach me the inevitable shortcomings of my design.</p>
+
+<h1 id="outlook">Outlook</h1>
+
+<p>Once again, allow me to quickly recap what we have done:</p>
+
+<p>I have taken you on a whirlwind tour of history to explain how we got to having the great abundance of amazingly strong chess playing programs we have today. In so doing I hopefully managed to wet your appetite to start working on your own engine or at the very least care tangentially about mine. To help you along in that journey, I have <a href="https://github.com/philipplenk/paulchen332">published my code</a> and begun the process of explaining it, first at a high level, then in some detail for a selected small but essential part. More details will follow in subsequent articles. With my next post in this series, I plan to cover board representations and the trade-offs involved.</p>
+
+<p>As usual, I tried to mention and acknowledge as many sources of inspiration and motivation as I possibly could, but there is little doubt in my mind that I missed some. If so, you can trust it was ineptitude, not ill intent. I am a firm believer in <a href="https://en.wikipedia.org/wiki/Hanlon%27s_razor">Hanlon’s razor</a> and like to apply it to myself as well as others. If there is any particular sin of omission you, dear reader, feel I have committed, pray tell me in the comments below and I will try to amend this post.</p>
+
+<p>If you wish to leave constructive feedback, any other thoughts or even praises for me and your fellow readers to find, I am happy to accept those, too. If you feel strongly about anything I wrote and would like to educate me on how irresponsibly uneducated I am, I welcome your insults and threats of violence. The opposite of love is not hate, but indifference. As such, I am delighted about any and all interaction and am looking forward to responses of any kind ;-)</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:briefly" role="doc-endnote">
+      <p>whom am I kidding at this point, really? <a href="#fnref:briefly" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:skip" role="doc-endnote">
+      <p>or simply skipped it. If you are not interested in my random ruminations and just want to get down to details, you can jump ahead to <a href="#how">“How?”</a>, it does not really depend on what came before. <a href="#fnref:skip" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:auto" role="doc-endnote">
+      <p>for which I might even harbor a certain disdain. Hardly noticeable in my writing… <a href="#fnref:auto" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:foolus" role="doc-endnote">
+      <p>Hell, there is even <a href="https://en.wikipedia.org/wiki/Penn_%26_Teller:_Fool_Us">an entire show based on the premise of concealing and guessing the methods used</a> and I freaking love it. The child like joy and occasionally anger Penn&amp;Teller display when fooled is almost as fascinating to watch as the dedication, ingenuity and creativity of the presenting magicians themselves. <a href="#fnref:foolus" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:morals" role="doc-endnote">
+      <p>the moral implications of doing so might warrant another, longer and more thorough discussion. I belief it’s pretty reprehensible so. <a href="#fnref:morals" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:babbage" role="doc-endnote">
+      <p>Judging by the release date of the article, I assume this must have referred to <a href="https://en.wikipedia.org/wiki/Difference_engine">the Difference Engine</a>, not the more general <a href="https://en.wikipedia.org/wiki/Analytical_engine">Analytical Engine</a> which is considered to be one of the first <a href="https://en.wikipedia.org/wiki/Turing-complete">Turing Complete</a> designs. <a href="#fnref:babbage" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:squareoff" role="doc-endnote">
+      <p>and which I would love to own. <a href="#fnref:squareoff" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:moxon" role="doc-endnote">
+      <p>The influence all of this had on fiction is quite fascinating. <a href="https://en.wikisource.org/wiki/Moxon%27s_Master">Moxon’s Master</a>, for instance, contains descriptions which seem clearly inspired by the Turk and might be the first depiction of a robot in english language literature. <a href="#fnref:moxon" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:turing_answer" role="doc-endnote">
+      <p>In case you are wondering: The first is answered in the affirmative, whilst the second is deemed unknowable. <a href="https://docs.google.com/file/d/0B0xb4crOvCgTNmEtRXFBQUIxQWs/">Just read the paper ;-)</a> <a href="#fnref:turing_answer" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:reverse_turing" role="doc-endnote">
+      <p>Somewhat ironically, he technically failed at this sort-of reverse <a href="https://en.wikipedia.org/wiki/Turing_test">Turing Test</a> by introducing some miscalculations. <a href="#fnref:reverse_turing" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:turochamp" role="doc-endnote">
+      <p>It was also <a href="https://github.com/philipplenk/paulchen332/blob/main/tests/turochamp.cpp">reconstructed by yours truly</a>, just for this post and the fun of it xD. Interestingly, my version produces the same amount of deviations as the <a href="https://en.chessbase.com/post/reconstructing-turing-s-paper-machine">chessbase one</a>, but different ones, so I guess I might have misunderstood something fundamental. I do, however, believe part of their analysis is wrong, as at one point they mention “The black pawn on e5 has disappeared, and with it the bonus for the two rows it had advanced (+0.4 for White).”, whereas Turings paper only mentioned “each white piece […] and the black king”. I therefore believe the position of black pawns was not taken into account for computing the position-play value. I am also not entirely sure their interpretation of Turings quiescence search is accurate. They write “captures had to be followed up at least to the point where no further capture was immediately possible”, but the paper machine has a notion of standing pat. The value of a position was supposed to be the greatest of “the positions obtained by considerable moves” or “the position itself evaluated as if a dead position”. <a href="#fnref:turochamp" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:viewership" role="doc-endnote">
+      <p><a href="https://www.ibm.com/ibm/history/ibm100/us/en/icons/deepblue/">IBM itself writes of more than three billion impressions</a> <a href="#fnref:viewership" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:deep_blue_more" role="doc-endnote">
+      <p>This fascinating story is, of course, as all the other parts of this historical overview, far too interesting and extensive to be covered exhaustively in so small a post. As such, I would like to invite my dear readers to dig deeper. To give you some hints as to where you could start, I’d like to point out, that there is <a href="https://en.wikipedia.org/wiki/Game_Over:_Kasparov_and_the_Machine">a documentary featuring Kasparov himself</a> which rather obviously hints at the suspicions of foul play. I also recently watched <a href="https://www.youtube.com/watch?v=HwF229U2ba8">a much more nuanced, detailed and fair treatment of the whole affair on Youtube</a>. And <a href="https://www.scientificamerican.com/article/20-years-after-deep-blue-how-ai-has-advanced-since-conquering-chess/">here</a> is a fairly recent interview with one member of the Deep Blue team. Oh, and once you are done with all that, I warmly recommend <a href="https://www.youtube.com/watch?v=zhkTHkIZJEc">this conversation</a> between Kasparov and <a href="https://en.wikipedia.org/wiki/Demis_Hassabis">Demis Hassabis</a> of <a href="https://www.youtube.com/watch?v=WXuK6gekU1Y">AlphaGo</a> fame. In general, the story of AlphaGo shares some truly striking parallels and some notable differences which are well worth investigating. <a href="#fnref:deep_blue_more" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:bragging_rights" role="doc-endnote">
+      <p>Additionally, Turing, in his paper cited above, claimed that the better a program, “the more ingenious perhaps the designer”. Being indirectly praised by the father of computer science himself should earn at least some minor bragging rights, wouldn’t you agree? <a href="#fnref:bragging_rights" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:shogi" role="doc-endnote">
+      <p>I have, in fact, started and abandoned writing a shogi program a really long time ago. I am a little sad that plan never really came to fruition, so I might try again someday. <a href="#fnref:shogi" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:better" role="doc-endnote">
+      <p>All of whom are by now far better players than I could hope to be. <a href="#fnref:better" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:obligatory_xkcd" role="doc-endnote">
+      <p>Here is <a href="https://xkcd.com/1838/">the obligatory xkcd comic making my point</a>. <a href="#fnref:obligatory_xkcd" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:hand" role="doc-endnote">
+      <p>The hand on his shoulder and the hair on the side are mine, in case you are wondering. <a href="#fnref:hand" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2dpixx" role="doc-endnote">
+      <p>This brilliant logo was graciously provided by <a href="http://www.2dpixx.de/">the wonderful Jana Ochse</a>. <a href="#fnref:2dpixx" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:source_incomplete" role="doc-endnote">
+      <p>You might, upon perusing the source code, realize that a large part of the evaluation function consists of huge, arbitrary looking tables with numbers lacking any explanation. Those have, of course, been arrived by automatic tuning, but the code responsible for this optimization (as well as a huge number of tests) is not included in the published repository yet. The reason is trivial, as this code suffers one major flaw: It is embarrassingly ugly. I shall eventually publish it, in conjunction with articles explaining its working, once I found the time to clean it up a little. <a href="#fnref:source_incomplete" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:favor" role="doc-endnote">
+      <p>So, if you wish to do me a favor, dear friend, I would be much obliged if you could quickly jump up <a href="#introducing-">just one section</a>. <a href="#fnref:favor" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:future" role="doc-endnote">
+      <p>which they will get ;-) <a href="#fnref:future" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:movegen" role="doc-endnote">
+      <p>Interestingly, move generation was glossed over completely in the Turing paper. I presume this was because it is so well defined a problem to seem trivial in theory. Legal moves follow directly from the games rules, which are unambiguous and almost boring. In practice, however, this is one of the much harder things to get completely right. Even Deep Blue seems to have had some bugs in that regard. <a href="#fnref:movegen" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:cars_again" role="doc-endnote">
+      <p>Most of the difficulties with self driving cars stem from this. If we had specially built roads and no signs desiged for the human eye, I dare say it wouldn’t even pose much of a challenge. <a href="#fnref:cars_again" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:register" role="doc-endnote">
+      <p>The most astute of you might have realized, that one of those is not like the other. All but one of the member functions are named exactly like to command they represent. <em>register</em> had to deviate from that rule, as <a href="https://en.cppreference.com/w/cpp/keyword/register">it is a keyword</a>. <a href="#fnref:register" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:past_turo" role="doc-endnote">
+      <p>Oh wait, that already happened… <a href="#fnref:past_turo" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:facade" role="doc-endnote">
+      <p>Which is basically <a href="https://en.wikipedia.org/wiki/Facade_pattern">the facade pattern</a>. <a href="#fnref:facade" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:bool_return" role="doc-endnote">
+      <p>In retrospect, I have to admit this is a little unclear. The interpretation of boolean return values is not always obvious and it might be better to return some simple enum class value and check for something like <em>task_queue::end_processing</em>. <a href="#fnref:bool_return" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+	</div>
+
+
+<script>talkyardServerUrl='https://comments-for-codemetas-de.talkyard.net';</script>
+<script async defer src="https://c1.ty-cdn.net/-/talkyard-comments.min.js"></script>
+
+<div class="talkyard-comments" data-discussion-id="The Royal Game" style="margin-top: 45px;">
+<noscript>Please enable Javascript to view comments.</noscript>
+<p style="margin-top: 25px; opacity: 0.9; font-size: 96%">Comments powered by<a href="https://www.talkyard.io">Talkyard</a>.</p>
+</div>
+
+
+
+<a class="u-url" href="/2020/11/22/The-Royal-Game.html" hidden></a>
+</article>
+
+			</div>
+		</main><footer class="site-footer h-card">
+	<data class="u-url" href="/"></data>
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+			<div class="footer-col footer-col-1"><ul class="social-contact-list"><li>
+			<a class="social-link" href="mailto:hannah.lenk@codemetas.de"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#email"></use></svg> <span>E-Mail</span></a>
+		</li><li>
+			<a class="social-link" href="https://www.linkedin.com/in/hannah-lenk-b9941613b"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span>LinkedIn</span></a>
+		</li><li>
+			<a class="social-link" href="https://www.twitch.tv/hannahlenk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitch"></use></svg> <span>Twitch</span></a>
+		</li></ul>
+</div>
+
+			<div class="footer-col footer-col-2"><ul class="social-showcase-list"><li>
+		<a class="social-link" href="https://github.com/hannahlenk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span>Github</span></a>
+	</li>
+	<li>
+		<a class="social-link" href="https://stackoverflow.com/users/1760583"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#stackoverflow"></use></svg> <span>stackoverflow</span></a>
+	</li>
+<li>
+		<a class="social-link" href="https://youtube.com/channel/UCeeufsDAkY633Ap4zyNHZVA"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#youtube"></use></svg> <span>YouTube</span></a>
+	</li></ul>
+</div>
+
+		</div>
+
+	</div>
+
+</footer>
+</body>
+
+</html>

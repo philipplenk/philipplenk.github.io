@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="A plea for order" />
+<meta name="author" content="Hannah Lenk" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I know I promised to talk more about emulation, about chess and operating systems, but I have to get something off of my chest first. This is not going to be one of my would-be grand and elongated epics trying to cover far too much in far too many words. Instead, I shall focus on one very small, very self contained thing: the order of #include directives in C++ source code1 Conveniently, this is also a much easier article to write. And a bit of an unbridled rant, so please excuse some foul language ;-) &#8617;" />
+<meta property="og:description" content="I know I promised to talk more about emulation, about chess and operating systems, but I have to get something off of my chest first. This is not going to be one of my would-be grand and elongated epics trying to cover far too much in far too many words. Instead, I shall focus on one very small, very self contained thing: the order of #include directives in C++ source code1 Conveniently, this is also a much easier article to write. And a bit of an unbridled rant, so please excuse some foul language ;-) &#8617;" />
+<link rel="canonical" href="http://localhost:4000/2020/07/15/A-plea-for-order.html" />
+<meta property="og:url" content="http://localhost:4000/2020/07/15/A-plea-for-order.html" />
+<meta property="og:site_name" content="code" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-15T01:24:23+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="A plea for order" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hannah Lenk"},"dateModified":"2020-07-15T01:24:23+02:00","datePublished":"2020-07-15T01:24:23+02:00","description":"I know I promised to talk more about emulation, about chess and operating systems, but I have to get something off of my chest first. This is not going to be one of my would-be grand and elongated epics trying to cover far too much in far too many words. Instead, I shall focus on one very small, very self contained thing: the order of #include directives in C++ source code1 Conveniently, this is also a much easier article to write. And a bit of an unbridled rant, so please excuse some foul language ;-) &#8617;","headline":"A plea for order","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/07/15/A-plea-for-order.html"},"url":"http://localhost:4000/2020/07/15/A-plea-for-order.html"}</script>
+<!-- End Jekyll SEO tag -->
+<title>code&lt;metas&gt; | A plea for order</title>
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="icon" type="image/svg+xml" href="/assets/logo.svg"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="code&lt;metas&gt;" /></head>
+<body><header class="site-header" role="banner">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/"><span style="color:black"><img src=/assets/logo.svg>code</span><span style="color:white;">&ltmetas&gt</span></a><nav class="site-nav">
+				<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+				<label for="nav-trigger">
+					<span class="menu-icon">
+						<svg viewBox="0 0 18 15" width="18px" height="15px">
+							<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+						</svg>
+					</span>
+				</label>
+
+				<div class="trigger"><a class="page-link" href="/about.html">About</a><a class="page-link" href="/tag_directory.html">Tags</a><a target="_blank" class="page-link" href="https://courses.codemetas.de/course_info">Courses</a>
+				</div>
+			</nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+			<div class="left-side-decoration">
+				<img  src=/assets/logo.svg>
+			</div>
+			<div class="wrapper">
+				<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+	<header class="post-header">
+		<h1 class="post-title p-name" itemprop="name headline">A plea for order</h1>
+		<p class="post-meta">
+
+			<time class="dt-published" datetime="2020-07-15T01:24:23+02:00" itemprop="datePublished">Jul 15, 2020
+			</time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+					<span class="p-author h-card" itemprop="name">
+						Hannah Lenk
+					</span>
+				</span>• <span>
+					[
+						<a href="/tag_directory.html#c++">c++</a>
+					]
+				</span></p>
+	</header>
+
+	<div class="post-content e-content" itemprop="articleBody">
+		<p><em>I know I promised to talk more about emulation, about chess and operating systems, but I have to get something off of my chest first. This is not going to be one of my would-be grand and elongated epics trying to cover far too much in far too many words. Instead, I shall focus on one very small, very self contained thing: the order of #include directives in C++ source code<sup id="fnref:easy" role="doc-noteref"><a href="#fn:easy" class="footnote" rel="footnote">1</a></sup></em></p>
+
+<p>If you know me or happen to have read <a href="/about.html">my about page</a> or <a href="/2020/05/16/why.html">the beautifully self-centered explanation of why this blog exists</a>, you might know that I tend to think what is great for me is also beneficial for others. As such, I <del>force</del> strongly encourage my friends to regularly engage in recreational programming. A few days ago, one particularly ambitious <del>victim</del> student of mine asked for assistance in tracking down a bug. Upon perusing the file sent to me, I was treated to this gem of questionable beauty:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;array&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;atomic&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;mutex&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">"mySocket.hpp"</span><span class="cp">
+#include</span> <span class="cpf">"user.hpp"</span><span class="cp">
+#include</span> <span class="cpf">"messages_tools.hpp"</span><span class="cp">
+</span><span class="c1">//[...]</span></code></pre>
+</figure>
+
+<p>The <em>real</em> code was alright and the bug source located easily enough, but this minor abomination painfully reminded me of an irksome issue too rarely addressed.<br />
+It is not an isolated incident either, but rather somewhat of a pet peeve of mine I am confronted with quite frequently. Here is an excerpt of some code I had to work on as part of my last project as a TA at university:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;scai/dmemo/Distribution.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;scai/dmemo/HaloExchangePlan.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;scai/dmemo/Distribution.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;scai/dmemo/BlockDistribution.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;scai/dmemo/GenBlockDistribution.hpp&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">"PrioQueue.h"</span><span class="cp">
+#include</span> <span class="cpf">"MultiLevel.h"</span><span class="cp">
+#include</span> <span class="cpf">"Settings.h"</span><span class="cp">
+</span><span class="c1">//[...]</span></code></pre>
+</figure>
+
+<p>Having read this far<sup id="fnref:thanks" role="doc-noteref"><a href="#fn:thanks" class="footnote" rel="footnote">2</a></sup>, you might be wondering, what it is I am so agitated about? Where and what exactly is my problem? Is there a bug in this simple list of includes? Can there be?<br />
+Well, the fact that you are even considering the option kind of makes my point for me. Nonetheless, the answer is no. There is no clear “bug” here. Both examples compiled fine and showed no problems directly related to the fragments shown. What I am so concerned about is largely stylistic, cosmetic even. It is not about correctness. Not immediately so.</p>
+
+<p>In case I wasn’t exactly clear about it, allow me to spell it out explicitly. I am thoroughly annoyed by the lack of any discernible structure. The order the directives appear in is a jumbled mess so incoherent to leave any viewer confused as to what is actually used by the code and at a complete loss when trying to determine if a required header for potentially new additions is already included. The authors themselves fell prey to that already: My friend included <em>unistd.h</em> twice, whilst the university code contains a duplicate directive for <em>chrono</em> and conflicting variations of <em>math.h</em> and <em>cmath</em>.</p>
+
+<p>I think we can all agree that the situation described above could be improved. The two pressing questions remaining are: should it be and if so, how exactly can we go about doing so? Is it worth whatever minuscule amount of extra effort some order would require? Judging by the title of this article and the ever so slightly strong language used to express my grievance you might have guessed my personal opinion on the matter, but even I admit there are at least two reasonable objections:</p>
+
+<ol>
+  <li>
+    <p>Why are you even talking about #include in 2020? This is the decade of modules and modules instantaneously solve all problems simple headers ever caused.</p>
+  </li>
+  <li>
+    <p>Stop being such a petty killjoy! What does it matter if some files are included twice? Just let every developer add the headers they need once a compiler complains, be done with it and spend your precious time on the <em>real</em> problems, writing <em>real</em> code, not insignificant include directives…</p>
+  </li>
+</ol>
+
+<p>At least they seem reasonable on a surface level. Please allow me to dismantle and destroy them.<sup id="fnref:strawman" role="doc-noteref"><a href="#fn:strawman" class="footnote" rel="footnote">3</a></sup></p>
+
+<h1 id="modules-cant-save-us">Modules can’t save us</h1>
+
+<p>Let’s address modules first. <a href="https://en.cppreference.com/w/cpp/language/modules">Modules</a> are one of the 4 really <em>big</em> and greatly anticipated features we finally got with the new C++20 standard.<sup id="fnref:features" role="doc-noteref"><a href="#fn:features" class="footnote" rel="footnote">4</a></sup> 
+They promise to at long last get us a little bit further out of the macro infested mess C originally got us in. Don’t get me wrong, I love the C programming language. Its simplicity, elegance and practicality are unmatched, and were even more so at the time of its inception. In <a href="https://en.wikiquote.org/wiki/Bjarne_Stroustrup">Stroustrups grand taxonomy of programming languages</a> of those everyone complains about and those no one uses, C clearly falls within the former category.<sup id="fnref:cvscpp" role="doc-noteref"><a href="#fn:cvscpp" class="footnote" rel="footnote">5</a></sup> Nonetheless, existing and striving for backwards compatibility for so long - <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language">the famous K&amp;R book</a> was published in 78, 42 years ago - is bound to accrue some <a href="https://en.wikipedia.org/wiki/Technical_debt">technical debt</a>.</p>
+
+<p>I believe its somewhat simplistic model of separate compilation and the dumb, mindless textural substitution used to stitch together translation units from various source and header files can be considered such debt and its about time we payed up and moved on. It was perfectly sufficient at the time, but in modern environments and at modern scale, we can and should be doing better. The high level design goals of modules include better isolation, better encapsulation and better interfaces and I’d like to think the design converged on after more than 15 years managed to achieve them. I wont be going into any detail how they work and can be used for three simple reasons: It is not exactly on topic, as is usual, others have done an <a href="https://stackoverflow.com/questions/22693950/what-exactly-are-c-modules">amazing job</a> <a href="https://vector-of-bool.github.io/2019/03/10/modules-1.html">explaining this</a> already, both <a href="http://www.modernescpp.com/index.php/cpp20-modules">in writing</a> and in <a href="https://www.youtube.com/watch?v=Kqo-jIq4V3I">great</a> <a href="https://www.youtube.com/watch?v=yee9i2rUF3s">talks</a>, and my own knowledge and experience is cursory at best.</p>
+
+<p>I further believe I am not entirely alone in not being an expert on the topic. The design was <a href="https://vector-of-bool.github.io/2019/01/27/modules-doa.html">somewhat contentious</a> and <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1103r3.pdf">not entirely insignificant changes</a> were made in the later phases of its standardization. As such, experimentation and general adoption is hindered by one more minor issue. Have a look at this <a href="https://en.cppreference.com/w/cpp/compiler_support">great overview of compiler and library support for all the myriad C++ features of newer standard revisions.</a> At the time of writing it contains the following relevant column:</p>
+
+<p><img src="/images/cpp20_module_support.png" alt="Modules implementations are not shipped with gcc at all and only partial in clang and msvc" title="Quite amazing how much is implemented and available so" class="centered-image" width="80%" /></p>
+
+<p>Apparently none of the big three compilers - gcc, clang and msvc - ship with complete modules support yet. The speed of adoption has significantly grown since C++11, but even with near perfect implementations, newer standards are not as prevalent as some fanatics like me would like them to be. Judging by some <a href="https://www.youtube.com/watch?v=ZckduPcuvDs">interesting survey results</a> it does not seem to be an exaggeration to claim that approximately half of all C++ developers do not even use C++17 yet. Baselessly extrapolating from that data, it might well be another 5 - 10 years until a majority of programmers and companies use <em>some</em> C++20 in all of their codebases. It will most certainly take even longer to completely transition away from headers and transform or replace all legacy code. And even if this happens - which is somewhat doubtful - we are still left with C compatibility. Their importance may be reduced significantly, but headers are here to stay.</p>
+
+<p>So no, whilst modules are generally great, solve many a problem and were desperately needed, they do not save us here. All of my concerns will remain valid for some time to come and some - like readability and clarity of intention - would matter even in a hypothetical and really really far away modules-only world.</p>
+
+<h1 id="style-matters">Style matters</h1>
+
+<p>In the meantime, we have to deal with includes and might as well do it with some structure. Or should we not care, do just what we absolutely must and be done with it? This second objection I promised to address can actually be construed as two different views of differing extremes: Should we not care about style in general or is this one specific instance just too insignificant? The first is trivially easy to debunk, the second one might prove a little more involved. As such, lets jump right in so I won’t lose your precious attention before my actual call to action.</p>
+
+<p>There is <a href="https://stackoverflow.com/questions/876089/who-wrote-this-programing-saying-always-code-as-if-the-guy-who-ends-up-maintai">this famous saying in programming circles</a>, that one should always write code as if the person who has to maintain it in the future is a violent psychopath who knows where you live. Considering I tend to maintain my own code, at least one part is true and my sense of orientation is notoriously lacking.</p>
+
+<p>Yet, why should we fear this person? Which properties in our code could trigger their rage and for what possible reasons? Well, another adage that complements the previous perfectly states the important fact, that code is far more frequently read than written. If you don’t finish your project in one sitting - and its a rare one that can be finished in so short a time - or if you happen to collaborate with someone else, whatever you wrote has to be parsed and understood, its intentions, methodology and implications gleaned as quick and frictionless as possible. You don’t just write for a compiler, you write for humans.</p>
+
+<p>This can’t be stressed enough. We tend to eschew goto, for example, not because it itself is fundamentally flawed, but because we are. It inhibits our ability to reason about control flow, to be certain about which pieces of code are executed in which sequence and which might be skipped entirely.<sup id="fnref:goto" role="doc-noteref"><a href="#fn:goto" class="footnote" rel="footnote">6</a></sup> The compiler has no such issue. It doesn’t care. We do.<br />
+In the same vein, we preach to carefully choose self-explanatory identifiers not because it is necessary, but because it aids readability and serves as a design aid. When we can’t clearly name a thing, we might have to rethink what and if it should be. Again: The compiler doesn’t care, it might even throw away the result of our hard work. Yet, I challenge you to try and guess what the following function does and should do:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">z</span><span class="p">(</span><span class="kt">int</span> <span class="n">_</span><span class="p">){</span><span class="k">return</span> <span class="n">_</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">?</span><span class="mi">1</span><span class="o">:</span><span class="p">(</span><span class="n">z</span><span class="p">(</span><span class="n">_</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">z</span><span class="p">(</span><span class="n">_</span><span class="o">-</span><span class="mi">2</span><span class="p">));}</span></code></pre>
+</figure>
+
+<p>I trust all of my dear readers can figure that one out eventually. Nonetheless, you have to admit it was not exactly self evident and you had to actively engage in dissecting and thinking about it. Contrast that experience with the following, absolutely identical fragment:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>At but one glance, without even reading the second line, you are aware of what it <em>should</em> do. As the intent is clear, subsequently your attention will not be spent on guessing and mechanics, but checking <em>how</em> the task is accomplished. With a tiny bit of domain knowledge, you might even spot the error. <a href="https://www.youtube.com/watch?v=hErD6WGqPlA">Or know a multitude of better solutions.</a></p>
+
+<p>And that, my friends, is the crux of the matter. Lack of stylistic concern is not itself a bug, but the cause of many. Style is never about just being - for some nebulous definition - pleasant to look at, but about being clear, reducing cognitive load and allowing the reader to focus on what is essential, making every character count. Code is written for humans and <a href="https://medium.com/@egonelbre/psychology-of-code-readability-d23b1ff1258a">humans have limitations</a>. Taking this into account leads to clear, readable expression of ideas. Neglecting it leads to misunderstandings and confusion. Good style fosters elegant, correct and efficient code. Bad style facilitates errors. 
+Pasta is tasty, but I much prefer penne to <a href="https://en.wikipedia.org/wiki/Spaghetti_code">spaghetti</a>.</p>
+
+<h1 id="include-matters">#include matters<sup id="fnref:hashinclude" role="doc-noteref"><a href="#fn:hashinclude" class="footnote" rel="footnote">7</a></sup></h1>
+
+<p>The generalized argument is quite obvious and I believe few would dare to disagree. I might, however, be in the minority in caring so deeply about this one specific issue.
+As a community, we routinely teach the importance of naming, <a href="https://howardhinnant.github.io/classdecl.html">worry about whether private or public parts should appear first in a class declaration</a> and debate the merits of east const and <a href="https://www.youtube.com/watch?v=_27NHB1OlNI">the correct one</a>, yet when it comes to include directives, order is often sorely neglected.</p>
+
+<p>Whilst <a href="https://blog.kowalczyk.info/article/qg/order-of-include-headers-in-cc.html">some</a> <a href="https://www.ostricher.com/2014/11/sort-your-include-files/">articles</a> <a href="https://blog.knatten.org/2010/07/01/the-order-of-include-directives-matter/">about</a> <a href="https://medium.com/software-design/rules-for-managing-header-file-includes-in-c-d7bbc7f500ee">the topic</a> seem to have been written over the years, those are few and far between. The newest I could find is from 2017 and none of them explain their motivation and reasoning in as much excessive detail as I’d deem adequate.<sup id="fnref:missed" role="doc-noteref"><a href="#fn:missed" class="footnote" rel="footnote">8</a></sup></p>
+
+<p>The wonderful and official <a href="https://isocpp.github.io/CppCoreGuidelines/">C++ Core Guidelines</a> have some rules for how to deal with header files and set some goals to strive after I completely agree with, but readability and ease of getting an overview of what is or isn’t used are notably absent. They even contain - at the time of writing - <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rs-include-order">the following example</a> as a <em>good</em> one:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span>
+<span class="c1">// ... my code here ...</span></code></pre>
+</figure>
+
+<p>Granted, the point illustrated here is a different one, but what thought process has gone into including vector before algorithm before string? I suspect none at all. With those three and in a simple self contained example that is perfectly fine, but just as C++ developers as a group seem to have converged on using pre-increment whenever there is no reason to use the somewhat more powerful post-increment and consider it premature pessimization to do otherwise, I believe not structuring includes from the get go should be considered a premature pessimization for readability. It really doesn’t take much effort and prevents problems down the line.</p>
+
+<p>I absolutely mean what I wrote there, it can cause real problems. As stated in the previous section when advocating for style in general, everything that might confuse is already detrimental, but it is more serious than that. 
+The problem here lies not simply in what is, but what could be and the fear and uncertainty this instills in collaborators.<sup id="fnref:self" role="doc-noteref"><a href="#fn:self" class="footnote" rel="footnote">9</a></sup> It is not entirely unheard of that <a href="https://www.glfw.org/docs/3.3/quick.html#quick_include">some libraries require a certain order</a>. Reasons can vary.</p>
+
+<p>Some - like the linked - simply have to deal with <a href="https://www.reddit.com/r/opengl/comments/1sumg2/why_does_the_order_of_my_opengl_includes_matter/">a configuration macro infested mess</a>.</p>
+
+<p>Sometimes and even more insidious, the meaning of code can subtly and silently change based on what is declared first. Have a look at this simplified example:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">gun</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"double</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">gun</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"int</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">fun</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">gun</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="n">fun</span><span class="p">();</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>
+<div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid black">
+<a href="/code/decl_order0.cpp">Simple?</a> <a href="https://godbolt.org/clientstate/CnsKICAic2Vzc2lvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6IDEsCiAgICAg ICJsYW5ndWFnZSI6ICJjKysiLAogICAgICAic291cmNlIjogIiNpbmNsdWRl IDxpb3N0cmVhbT5cblxudm9pZCBndW4oZG91YmxlKVxue1xuXHRzdGQ6OmNv dXQ8PFwiZG91YmxlXFxuXCI7XG59XG5cbnZvaWQgZ3VuKGludClcbntcblx0 c3RkOjpjb3V0PDxcImludFxcblwiO1xufVxuXG52b2lkIGZ1bigpXG57XG5c dGd1big0Mik7XG59XG5cbmludCBtYWluKGludCBhcmdjLCBjaGFyKiBhcmd2 W10pXG57XG5cdGZ1bigpO1xuXHRyZXR1cm4gMDtcbn1cbiIsCiAgICAgICJj b21waWxlcnMiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNsYW5n X3RydW5rIiwKICAgICAgICAgICJvcHRpb25zIjogIi1PMyIKICAgICAgICB9 CiAgICAgIF0sCiAgICAgICJleGVjdXRvcnMiOiBbCiAgICAgICAgewogICAg ICAgICAgImFyZ3VtZW50cyI6ICIiLAogICAgICAgICAgImNvbXBpbGVyIjog ewogICAgICAgICAgICAgICJpZCI6ICJjbGFuZ190cnVuayIsCiAgICAgICAg ICAgICAgImxpYnMiOiBbXSwKICAgICAgICAgICAgICAib3B0aW9ucyI6ICIt TzMiCiAgICAgICAgICB9LAogICAgICAgICAgInN0ZGluIjogIiIKICAgICAg ICB9CiAgICAgIF0KICAgIH0KICBdCn0K "><img class="svg-logo-link" src="/assets/compiler_explorer_logo.svg" /></a>
+</div>
+</p>
+
+<p>Let’s ignore for a moment that I exemplified precisely the horrid naming I criticized before and analyze what exactly is happening here. In main we simply call a function appropriately named <em>fun</em>. This in turn calls a function even more appropriately named <em>gun</em>, passes the value 42 and this is where things get interesting. <a href="https://en.cppreference.com/w/cpp/language/lookup">Name lookup</a> is performed to get a set of candidate functions, which yields - in our case - the two variations of <em>gun</em>, one expecting a double, the other one an int. After this, <a href="https://en.cppreference.com/w/cpp/language/overload_resolution">overload resolution</a> kicks in, selects the int version as a better candidate and our program dutifully prints “int”. Pretty simple, right?<sup id="fnref:ct" role="doc-noteref"><a href="#fn:ct" class="footnote" rel="footnote">10</a></sup> Too simple even, so let’s switch things up a little:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">gun</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"double</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">fun</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">gun</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">gun</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"int</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="n">fun</span><span class="p">();</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>
+<div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid black">
+<a href="/code/decl_order1.cpp">Still?</a> <a href="https://godbolt.org/clientstate/CnsKICAic2Vzc2lvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6IDEsCiAgICAg ICJsYW5ndWFnZSI6ICJjKysiLAogICAgICAic291cmNlIjogIiNpbmNsdWRl IDxpb3N0cmVhbT5cblxudm9pZCBndW4oZG91YmxlKVxue1xuXHRzdGQ6OmNv dXQ8PFwiZG91YmxlXFxuXCI7XG59XG5cbnZvaWQgZnVuKClcbntcblx0Z3Vu KDQyKTtcbn1cblxudm9pZCBndW4oaW50KVxue1xuXHRzdGQ6OmNvdXQ8PFwi aW50XFxuXCI7XG59XG5cbmludCBtYWluKGludCBhcmdjLCBjaGFyKiBhcmd2 W10pXG57XG5cdGZ1bigpO1xuXHRyZXR1cm4gMDtcbn1cbiIsCiAgICAgICJj b21waWxlcnMiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNsYW5n X3RydW5rIiwKICAgICAgICAgICJvcHRpb25zIjogIi1PMyIKICAgICAgICB9 CiAgICAgIF0sCiAgICAgICJleGVjdXRvcnMiOiBbCiAgICAgICAgewogICAg ICAgICAgImFyZ3VtZW50cyI6ICIiLAogICAgICAgICAgImNvbXBpbGVyIjog ewogICAgICAgICAgICAgICJpZCI6ICJjbGFuZ190cnVuayIsCiAgICAgICAg ICAgICAgImxpYnMiOiBbXSwKICAgICAgICAgICAgICAib3B0aW9ucyI6ICIt TzMiCiAgICAgICAgICB9LAogICAgICAgICAgInN0ZGluIjogIiIKICAgICAg ICB9CiAgICAgIF0KICAgIH0KICBdCn0K "><img class="svg-logo-link" src="/assets/compiler_explorer_logo.svg" /></a>
+</div>
+</p>
+
+<p>All I did was swap the positions of fun and the second version of gun. Which is exactly the same as would happen if both were defined inline inside different header files and we swapped the include order. This might seem harmless, but the meaning of our program just changed. When executed, it will - somewhat surprisingly - output “double”. When collecting candidate functions for firing the gun, the second, better fitting version is not yet known and <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion">due to dreaded implicit conversions</a> no problem is detected with using the first.</p>
+
+<p>I admit, this concrete example is unlikely to occur in practice. Nonetheless, it showcases a type of problem that can realistically happen and causes me to feel queasy whenever I see an ordering I fail to understand. Just as you, dear reader, when I suggested in strong words that there might be a problem in the introductory examples, I am left to guess the authors intentions. Was there willful negligence or a brilliant scheme beyond my comprehension?</p>
+
+<p>The most frequent “errors” I observed, however, are simple hidden dependencies which just so happen to be satisfied transitively. Once more, allow me to demonstrate:</p>
+
+<p>A.hpp:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#ifndef A_H
+#define A_H
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">meaningless</span><span class="p">();</span>
+
+<span class="cp">#endif</span></code></pre>
+</figure>
+
+<p>A.cpp:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">"A.hpp"</span><span class="cp">
+</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="o">=</span><span class="s">"Hi"</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">meaningless</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">str</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>B.hpp:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#ifndef B_H
+#define B_H
+</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="nf">example</span><span class="p">();</span>
+
+<span class="cp">#endif</span></code></pre>
+</figure>
+
+<p>B.cpp:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">"A.hpp"</span><span class="cp">
+#include</span> <span class="cpf">"B.hpp"</span><span class="cp">
+</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="nf">example</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">meaningless</span><span class="p">()</span><span class="o">+</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">{</span><span class="s">" dear reader!"</span><span class="p">};</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>Again, not the most realistic of examples, but brief and illustrative of a larger issue. What happens if, say, the author of A realizes the ridiculousness of the <em>meaningless</em> implementation and changes it to no longer unnecessarily construct a std::string:</p>
+
+<figure class="highlight">
+  <pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">"A.hpp"</span><span class="cp">
+</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">meaningless</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="s">"Hi"</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>Diligently, the header is also changed to no longer include &lt;string&gt;.<br />
+<strong>B breaks!</strong><br />
+B.cpp will now fail to compile not because anything it did changed, not because anything it directly used changed, but because one of its dependencies changed its implementation. Not its interface, just the implementation. Needless to say, this is very bad. Among all the dangers listed above, it is luckily also the one most easily avoided. Whilst we cannot guarantee no third party code ever falls into this trap, some simple rules can reduce the risk of suffering from it and prevent us from imposing such burden on our own users. To understand how, let’s first reiterate what exactly went wrong:</p>
+
+<ul>
+  <li>The author of A exposed an implementation detail - its use of std::string - in the corresponding header file.</li>
+  <li>The author of B fell into <a href="https://www.hyrumslaw.com/">Hyrum’s Law</a> and unwittingly relied on this private detail.</li>
+</ul>
+
+<p>Both parties could have done better.</p>
+
+<ul>
+  <li>The author of A could have prevented the issue appearing at all by being explicit and distinguishing between which dependencies are required to use the provided functionality and which are simply implementation details and might change. As such, the include directive should have been in the A.cpp file, not the header.</li>
+  <li>The author of B could have detected the issue earlier by including its own header first. This would have triggered a compiler error, as B.hpp is not self-sufficient and does not include everything it uses. Subsequently changing B.hpp to ensure B.cpp compiles breaks the implicit dependency.</li>
+</ul>
+
+<p>In conclusion: I think I have shown that even if there were no technical downsides at all, a lack of order does still cause some cognitive overhead. It either gives your reader something to think about that might be of no consequence and simply distracting or it encourages them to completely skip over a section of your file, causing you to convey less useful information than you could have. You squandered an opportunity to be explicit about what your dependencies are, obscured your intent and failed to ensure that whoever works with your files next can feel confident in any modifications and additions.</p>
+
+<h1 id="so-what">So what?</h1>
+
+<p>With all this I hopefully managed to convince you that some rudimentary rules can be beneficial. Which is, once again, where we arrive at an impasse.
+Just as with project organization in general - so there have recently been some <a href="https://api.csswg.org/bikeshed/?force=1&amp;url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs">commendable and valiant efforts</a> - there is no one, official, all encompassing standard way to handle this ordering. Regardless, we don’t have to be entirely subjective and can be informed by the concerns addressed above. As such, I would like to outline which guidelines I have adopted in my own personal projects as well as the underlying reasoning, in the hope that proves of some use and inspiration for my dear readers.</p>
+
+<p>In order to identify what is good or bad and construct a generally useful and coherent ruleset we must first agree on some goals to strife after. On a high level, I trust the following two will not be controversial:</p>
+
+<ul>
+  <li>Minimize errors</li>
+  <li>Maximize clarity</li>
+</ul>
+
+<p>From the possible problems described combined with these criteria, we can deduce the following instructions:</p>
+
+<ol start="0">
+  <li>Be self sufficient, include everything you rely on.</li>
+  <li>Be minimal, include only what is required.</li>
+  <li>In a cpp file, first include the corresponding header.</li>
+  <li>After this, organize headers in interrelated groups - based on projects or libraries - and list those in reverse order of potential dependencies. E.g. first list everything belonging to the same project, followed by other libraries used, followed by almost-standard libraries like boost, followed by the C++ standard library, followed by the C standard library.</li>
+  <li>Order the group members themselves alphabetically.</li>
+</ol>
+
+<p>I’d be remiss to omit, that whilst I do like to think I came up with those rules on my own, they turn out to be not entirely original. Far more experienced and knowledgeable people <a href="https://stackoverflow.com/questions/614302/c-header-order">seem to have arrived</a> at <a href="https://stackoverflow.com/questions/2762568/c-c-include-header-file-order">pretty much the same set</a>. I don’t think that is a downside but rather consider it a confirmation of my reasoning. The result appears to follow logically from the stated criteria.</p>
+
+<p>I already kind of touched on it in the previous section, but the one possible error we can deal with is hidden dependencies. Rules 0 and 1 should help us eliminate them and rules 2 and 3 serve as a sort of sanity check to ensure we detect violations quickly.</p>
+
+<p>To maximize clarity, we want to enable a human to quickly discover what is needed and glean as much useful information as possible with a cursory glance. Rule 0 forces us to be explicit about our dependencies instead of relying on implicit support and expectations. Rule 1 guarantees that whatever is mentioned is relevant. The grouping allows a quick scan to reveal which larger sets of libraries are depended on and the alphabetical order helps to quickly determine the presence or absence of any particular include.</p>
+
+<h1 id="a-plea">A plea</h1>
+
+<p>With this, I shall finally come to an end and fear I might owe you an apology. I promised this would be short and as the more perceptive of you might have noticed I failed to keep that promise. Let’s just claim <a href="https://en.wikiquote.org/wiki/Blaise_Pascal">I lacked the time</a>, thank you for sticking with me.</p>
+
+<p>I do hope it has been useful. As I repeatedly elaborated on those points in excruciating detail in private conversation and was at one point so annoyed by the frequent inconsistencies to force it on my university students via an exercise<sup id="fnref:force" role="doc-noteref"><a href="#fn:force" class="footnote" rel="footnote">11</a></sup>, I believed my thoughts might be more generally interesting. At least I now have an article to point to whenever it does come up. I am very much interested in your thoughts. Am I misguided and obsessive? Am I just plain wrong? Feel free to enlighten me in the comments below!</p>
+
+<p>In closing, allow me to implore you one last time: We might not agree on which exact order to follow, but I hope you now concur some is needed. So please, I beg of you: Adopt “my” rules. Adopt some other rules. I really don’t care about which, just adopt <em>some</em>.<sup id="fnref:lie" role="doc-noteref"><a href="#fn:lie" class="footnote" rel="footnote">12</a></sup><br />
+<a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ChekhovsGun">If you say in the first chapter that there is a rifle hanging on the wall, in the second or third chapter it absolutely must go off.</a>. If you include a file, it better have a purpose for being where it is.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:easy" role="doc-endnote">
+      <p>Conveniently, this is also a much easier article to write. And a bit of an unbridled rant, so please excuse some foul language ;-) <a href="#fnref:easy" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:thanks" role="doc-endnote">
+      <p>thank you for that. <a href="#fnref:thanks" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:strawman" role="doc-endnote">
+      <p>Of course, what I am doing here is not exactly fair. All I do is construct a strawman to beat it up and tear it back down again. That is for the very simple reason that I am not aware of any better arguments against my position. If you do know any and are convinced I am delusional, I would be most grateful to be enlightened by your wisdom. Feel free to use the comments below or contact me via email. <a href="#fnref:strawman" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:features" role="doc-endnote">
+      <p>The others, in order of my personal preference, are: <a href="https://en.cppreference.com/w/cpp/language/constraints">concepts</a>, <a href="https://en.cppreference.com/w/cpp/language/coroutines">coroutines</a> and <a href="https://en.cppreference.com/w/cpp/ranges">ranges</a>. <a href="https://www.youtube.com/watch?v=Be47dtmj8EE">Here is a great talk quickly illustrating what else C++20 has to offer.</a> <a href="#fnref:features" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:cvscpp" role="doc-endnote">
+      <p>So I personally see few reasons to choose it over C++, except maybe availability and simplicity of implementation. <a href="#fnref:cvscpp" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:goto" role="doc-endnote">
+      <p>I’m not trying to unduly diss goto here. There are valid reasons for its use. <a href="https://www.youtube.com/watch?v=lW51OrNJAn8">It is also pretty interesting what is defined in terms of it.</a> <a href="#fnref:goto" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:hashinclude" role="doc-endnote">
+      <p>It is absolutely not the topic of this post, but considering I used this headline, I feel compelled to mention that another thing that matters is, of course, diversity and inclusion. <a href="https://www.includecpp.org/">Have a look at the #include&lt;c++&gt; community.</a> <a href="#fnref:hashinclude" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:missed" role="doc-endnote">
+      <p>Depending on how condensed and pithy you prefer to consume technical opinions, that might of course be a good thing and better suited for you than my own writing. Additionally, I might have missed some articles. If so, feel free to point that out in the comments and I will gladly read them, give proper credit where it is due and link them here. <a href="#fnref:missed" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:self" role="doc-endnote">
+      <p>which could very well be future versions of yourself. <a href="#fnref:self" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ct" role="doc-endnote">
+      <p>This is simplified of course and the way I described the order things happen in could be misleading. Of course, the decision which gun to call happens at compile time and not <em>after</em> fun is called at runtime. <a href="#fnref:ct" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:force" role="doc-endnote">
+      <p>Well, it wasn’t exactly forced. It was an optional exercise for additional points in which I requested them to create a clang based tool enforcing the ordering, which was nothing more than a thinly veiled attempt to prompt them to at least think about the matter. No one took me up on it, but it was end of term and exams were coming up, so I can’t begrudge them that. <a href="#fnref:force" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:lie" role="doc-endnote">
+      <p>That is, of course, a lie. I want you to follow my example. To cite the great Walter E. Brown: <a href="https://www.youtube.com/watch?v=OAmWHmwlMwI">I know that all these opinions are not yet shared by all programmers - but they should be</a> <a href="#fnref:lie" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+	</div>
+
+
+<script>talkyardServerUrl='https://comments-for-codemetas-de.talkyard.net';</script>
+<script async defer src="https://c1.ty-cdn.net/-/talkyard-comments.min.js"></script>
+
+<div class="talkyard-comments" data-discussion-id="A plea for order" style="margin-top: 45px;">
+<noscript>Please enable Javascript to view comments.</noscript>
+<p style="margin-top: 25px; opacity: 0.9; font-size: 96%">Comments powered by<a href="https://www.talkyard.io">Talkyard</a>.</p>
+</div>
+
+
+
+<a class="u-url" href="/2020/07/15/A-plea-for-order.html" hidden></a>
+</article>
+
+			</div>
+		</main><footer class="site-footer h-card">
+	<data class="u-url" href="/"></data>
+
+	<div class="wrapper">
+
+		<div class="footer-col-wrapper">
+			<div class="footer-col footer-col-1"><ul class="social-contact-list"><li>
+			<a class="social-link" href="mailto:hannah.lenk@codemetas.de"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#email"></use></svg> <span>E-Mail</span></a>
+		</li><li>
+			<a class="social-link" href="https://www.linkedin.com/in/hannah-lenk-b9941613b"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span>LinkedIn</span></a>
+		</li><li>
+			<a class="social-link" href="https://www.twitch.tv/hannahlenk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitch"></use></svg> <span>Twitch</span></a>
+		</li></ul>
+</div>
+
+			<div class="footer-col footer-col-2"><ul class="social-showcase-list"><li>
+		<a class="social-link" href="https://github.com/hannahlenk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span>Github</span></a>
+	</li>
+	<li>
+		<a class="social-link" href="https://stackoverflow.com/users/1760583"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#stackoverflow"></use></svg> <span>stackoverflow</span></a>
+	</li>
+<li>
+		<a class="social-link" href="https://youtube.com/channel/UCeeufsDAkY633Ap4zyNHZVA"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#youtube"></use></svg> <span>YouTube</span></a>
+	</li></ul>
+</div>
+
+		</div>
+
+	</div>
+
+</footer>
+</body>
+
+</html>
